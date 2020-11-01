@@ -1,6 +1,7 @@
 const { User } = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const resolvers = {
@@ -14,14 +15,24 @@ const resolvers = {
   },
   Mutation: {
     register: async (_, { username, password }) => {
-      const user = await User.create({
+      const user = await User.findOne({ where: { username } });
+
+      if (user) {
+        throw new Error('Sorry, this user already exists. Please try again!');
+      }
+
+      const createdUser = await User.create({
         username,
-        password: await bcrypt.hash(password),
+        password: await bcrypt.hash(password, 10),
       });
 
-      return jwt.sign({ id: user.id, username: user.username }, JWT_SECRET, {
-        expiresIn: '1d',
-      });
+      return jwt.sign(
+        { id: createdUser.id, username: createdUser.username },
+        JWT_SECRET,
+        {
+          expiresIn: '1d',
+        }
+      );
     },
     login: async (_, { username, password }) => {
       const user = await User.findOne({ where: { username } });
