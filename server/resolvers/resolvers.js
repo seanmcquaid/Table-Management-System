@@ -12,4 +12,35 @@ const resolvers = {
       throw new Error("Sorry, you're not currently authenticated!");
     },
   },
+  Mutation: {
+    register: async (_, { username, password }) => {
+      const user = await User.create({
+        username,
+        password: await bcrypt.hash(password),
+      });
+
+      return jwt.sign({ id: user.id, username: user.username }, JWT_SECRET, {
+        expiresIn: '1d',
+      });
+    },
+    login: async (_, { username, password }) => {
+      const user = await User.findOne({ where: { username } });
+
+      if (!user) {
+        throw new Error("Sorry, this user doesn't exist. Please try again!");
+      }
+
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+
+      if (isPasswordValid) {
+        throw new Error('You password is incorrect!');
+      }
+
+      return jwt.sign({ id: user.id, username: user.password }, JWT_SECRET, {
+        expiresIn: '1d',
+      });
+    },
+  },
 };
+
+module.exports = resolvers;
