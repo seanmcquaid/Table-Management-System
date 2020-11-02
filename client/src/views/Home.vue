@@ -8,12 +8,25 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue';
+import { useQuery } from '@vue/apollo-composable';
+import { gql } from 'apollo-boost';
 
 export default {
   name: 'Home',
   components: {
     HelloWorld,
   },
-  setup() {},
+  setup() {
+    const query = gql`
+      {
+        getAllUsers {
+          id
+        }
+      }
+    `;
+    const { result } = useQuery(query);
+
+    console.log(result.value.getAllUsers);
+  },
 };
 </script>
