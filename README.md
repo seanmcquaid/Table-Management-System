@@ -4,14 +4,14 @@
 
 ### Front End
 
-- Vue.js
+- Vue.js - Composition API
 - Vuex
 - Vue Router
-- Apollo
+- Apollo + GraphQL
 
 ### Back End
 
 - Node.js
 - Express
-- GraphQL
+- Apollo + GraphQL
 - PostgreSQL
