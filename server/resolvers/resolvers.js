@@ -12,6 +12,9 @@ const resolvers = {
       }
       throw new Error("Sorry, you're not currently authenticated!");
     },
+    getAllUsers: async (_) => {
+      return await User.findAll();
+    },
   },
   Mutation: {
     register: async (_, { username, password }) => {
