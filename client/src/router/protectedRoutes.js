@@ -1,6 +1,6 @@
-import store from '../store';
+// import store from '../store';
 
-export const isAuthenticated = (to, from, next) => {};
+// export const isAuthenticated = (to, from, next) => {};
 
 const protectedRoutes = [
   // {
