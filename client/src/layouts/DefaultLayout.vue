@@ -1,10 +1,18 @@
 <template>
   <div class="appContainer">
-    <header></header>
+    <header>
+      <nav>
+        <ul>
+          <li><router-link to="/">Home</router-link></li>
+        </ul>
+      </nav>
+    </header>
     <main>
       <slot />
     </main>
-    <footer></footer>
+    <footer>
+      © Sean McQuaid 2020
+    </footer>
   </div>
 </template>
 
@@ -18,7 +26,32 @@ export default {};
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+}
+
+nav {
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  width: 100%;
+}
+
+main {
+  width: 100%;
+}
+
+footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  padding: 1rem 0;
 }
 </style>

@@ -1,9 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
-import protectedRoutes from './protectedRoutes';
+// import protectedRoutes from './protectedRoutes';
 
 const routes = [
-  ...protectedRoutes,
   {
     path: '/',
     name: 'Home',

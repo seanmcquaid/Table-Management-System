@@ -7,6 +7,6 @@ import { apolloClient } from './apollo';
 
 createApp(App)
   .use(store)
-  .use(router)
   .provide(DefaultApolloClient, apolloClient)
+  .use(router)
   .mount('#app');

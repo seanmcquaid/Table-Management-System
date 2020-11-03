@@ -7,6 +7,7 @@
 <script>
 import { useQuery } from '@vue/apollo-composable';
 import { gql } from 'apollo-boost';
+import { onMounted, reactive } from 'vue';
 
 export default {
   name: 'Home',
@@ -19,9 +20,17 @@ export default {
         }
       }
     `;
-    const { result } = useQuery(query);
 
-    console.log(result.value.getAllUsers);
+    const result = reactive({ data: [] });
+
+    onMounted(() => {
+      result.data = useQuery(query);
+    });
+
+    console.log(result);
+    return {
+      result,
+    };
   },
 };
 </script>
