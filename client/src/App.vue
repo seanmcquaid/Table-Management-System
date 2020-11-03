@@ -1,11 +1,15 @@
 <template>
-  <router-view />
+  <DefaultLayout>
+    <router-view />
+  </DefaultLayout>
 </template>
 
 <script>
-// import DefaultLayout from '@/layouts/DefaultLayout';
+import DefaultLayout from '@/layouts/DefaultLayout';
 export default {
-  components: {},
+  components: {
+    DefaultLayout,
+  },
 };
 </script>
 
