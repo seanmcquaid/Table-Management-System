@@ -2,10 +2,12 @@
   <div class="appContainer">
     <header>
       <nav>
-        <ul v-if="isAuthenticated">
+        <ul v-if="isAuthenticated"></ul>
+        <ul v-else>
           <li><router-link to="/">Home</router-link></li>
+          <li><router-link to="/login">Login</router-link></li>
+          <li><router-link to="/register">Register</router-link></li>
         </ul>
-        <ul v-else></ul>
       </nav>
     </header>
     <main>
@@ -18,12 +20,14 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 export default {
   setup() {
     const store = useStore();
     const isAuthenticated = computed(() => store.state.auth.isAuthenticated);
+
+    onMounted(() => {});
 
     return {
       isAuthenticated,
@@ -42,12 +46,21 @@ export default {
 }
 
 nav {
+  width: 100%;
 }
 
 ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
   list-style: none;
-  padding: 0;
+  padding: 1rem;
   margin: 0;
+}
+
+li {
+  padding: 0.25rem;
 }
 
 header {
