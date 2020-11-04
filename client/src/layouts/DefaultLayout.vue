@@ -2,9 +2,10 @@
   <div class="appContainer">
     <header>
       <nav>
-        <ul>
+        <ul v-if="isAuthenticated">
           <li><router-link to="/">Home</router-link></li>
         </ul>
+        <ul v-else></ul>
       </nav>
     </header>
     <main>
@@ -17,7 +18,18 @@
 </template>
 
 <script>
-export default {};
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+export default {
+  setup() {
+    const store = useStore();
+    const isAuthenticated = computed(() => store.state.auth.isAuthenticated);
+
+    return {
+      isAuthenticated,
+    };
+  },
+};
 </script>
 
 <style scoped>
