@@ -27,7 +27,9 @@ export default {
     const store = useStore();
     const isAuthenticated = computed(() => store.state.auth.isAuthenticated);
 
-    onMounted(() => {});
+    onMounted(() => {
+      // if there is a token in local storage, dispatch get user info action
+    });
 
     return {
       isAuthenticated,
