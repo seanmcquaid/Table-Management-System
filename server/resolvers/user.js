@@ -6,7 +6,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 const resolvers = {
   Query: {
-    current: async (_, args, { user }) => {
+    getUserInfo: async (_, args, { user }) => {
       if (user) {
         return await User.findOne({ where: { id: user.id } });
       }
