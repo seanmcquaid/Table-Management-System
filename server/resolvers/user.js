@@ -45,8 +45,9 @@ const resolvers = {
       }
 
       const isPasswordValid = await bcrypt.compare(password, user.password);
+      console.log(await bcrypt.compare(password, user.password));
 
-      if (isPasswordValid) {
+      if (!isPasswordValid) {
         throw new Error('You password is incorrect!');
       }
 
