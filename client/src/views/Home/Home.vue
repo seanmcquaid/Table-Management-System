@@ -1,7 +1,5 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-  </div>
+  <div class="home"></div>
 </template>
 
 <script>
@@ -27,7 +25,7 @@ export default {
       result.data = useQuery(query);
     });
 
-    console.log(result);
+    console.log(result.data);
     return {
       result,
     };
