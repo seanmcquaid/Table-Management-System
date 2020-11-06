@@ -1,34 +1,13 @@
 <template>
-  <div class="home"></div>
+  <div class="homePage"></div>
 </template>
 
 <script>
-import { useQuery } from '@vue/apollo-composable';
-import { gql } from 'apollo-boost';
-import { onMounted, reactive } from 'vue';
+import {} from 'vue';
 
 export default {
   name: 'Home',
   components: {},
-  setup() {
-    const query = gql`
-      {
-        getAllUsers {
-          id
-        }
-      }
-    `;
-
-    const result = reactive({ data: [] });
-
-    onMounted(() => {
-      result.data = useQuery(query);
-    });
-
-    console.log(result.data);
-    return {
-      result,
-    };
-  },
+  setup() {},
 };
 </script>
