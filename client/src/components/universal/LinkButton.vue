@@ -1,5 +1,5 @@
 <template>
-  <router-link to="route"><slot /></router-link>
+  <router-link :to="route" class="linkButton"><slot /></router-link>
 </template>
 
 <script>
@@ -10,4 +10,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.linkButton {
+  padding: 1rem;
+  border: 2px solid black;
+  margin: 1rem;
+}
+</style>
