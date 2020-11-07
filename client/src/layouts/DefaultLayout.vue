@@ -55,7 +55,6 @@ ul {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
   list-style: none;
   padding: 1rem;
   margin: 0;
@@ -76,7 +75,6 @@ main {
 
 footer {
   width: 100%;
-  position: absolute;
   bottom: 0;
   left: 0;
   text-align: center;

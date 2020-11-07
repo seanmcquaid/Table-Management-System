@@ -8,6 +8,15 @@
         :value="state.username"
         label="Username"
         placeholder="Username here"
+        type="text"
+      />
+      <TextInput
+        @input="inputOnChange"
+        name="password"
+        :value="state.password"
+        label="Password"
+        placeholder="Password here"
+        type="password"
       />
       <Button type="submit">Login</Button>
     </form>
@@ -53,4 +62,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+</style>

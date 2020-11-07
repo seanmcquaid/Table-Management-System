@@ -6,6 +6,7 @@
       :value="value"
       :name="name"
       :placeholder="placeholder"
+      :type="type"
     />
   </label>
 </template>
@@ -29,6 +30,10 @@ export default {
       type: String,
       required: false,
     },
+    type: {
+      type: String,
+      required: true,
+    },
   },
   setup(props, { emit }) {
     const onChange = event => {
@@ -42,4 +47,19 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  outline: none;
+  border-radius: 8px;
+  border: 2px solid black;
+}
+</style>

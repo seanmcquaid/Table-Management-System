@@ -34,7 +34,7 @@ export default {
 <style scoped>
 .linkButtonsContainer {
   height: 100px;
-  width: 100%;
+  width: 250px;
   display: flex;
   flex-direction: row;
   align-items: center;
