@@ -1,18 +1,18 @@
-import { apolloClient } from '../../../../apollo';
-import { loginMutation } from '../../../../apollo/mutations';
+import * as userService from '../../../../api/userService';
 
 const authActions = {
-  loginAction: async ({ commit }, payload) => {
+  loginAction: ({ commit }, payload) => {
     commit('loading');
-    console.log(payload);
 
-    const { data, errors } = await apolloClient.mutate(loginMutation);
-
-    if (errors) {
-      return commit('loginError', errors);
-    }
-
-    return commit('loginSuccess', data);
+    const { username, password } = payload;
+    userService
+      .login(username, password)
+      .then(({ data }) => {
+        commit('loginSuccess', data);
+      })
+      .catch(err => {
+        commit('loginError', err);
+      });
   },
 };
 

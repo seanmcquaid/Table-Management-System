@@ -1,11 +1,12 @@
 <template>
   <PageLayout>
     <H1>Login</H1>
+    <P></P>
     <form @submit.prevent="onSubmit">
       <TextInput
         @input="inputOnChange"
         name="username"
-        :value="state.username"
+        :value="username"
         label="Username"
         placeholder="Username here"
         type="text"
@@ -13,7 +14,7 @@
       <TextInput
         @input="inputOnChange"
         name="password"
-        :value="state.password"
+        :value="password"
         label="Password"
         placeholder="Password here"
         type="password"
@@ -24,21 +25,25 @@
 </template>
 
 <script>
-import { reactive } from 'vue';
+import { reactive, toRefs } from 'vue';
 import PageLayout from '@/layouts/PageLayout.vue';
 import H1 from '@/components/universal/Typography/H1.vue';
+import P from '@/components/universal/Typography/P.vue';
 import Button from '@/components/universal/Button.vue';
 import TextInput from '@/components/universal/TextInput.vue';
+import { useStore } from 'vuex';
 
 export default {
   name: 'Login',
   components: {
     PageLayout,
     H1,
+    P,
     Button,
     TextInput,
   },
   setup() {
+    const store = useStore();
     const state = reactive({
       username: '',
       password: '',
@@ -46,15 +51,17 @@ export default {
 
     const inputOnChange = event => {
       state[event.target.name] = event.target.value;
-      console.log(state);
     };
 
     const onSubmit = () => {
-      console.log(state);
+      store.dispatch('loginAction', {
+        username: state.username,
+        password: state.password,
+      });
     };
 
     return {
-      state,
+      ...toRefs(state),
       onSubmit,
       inputOnChange,
     };
