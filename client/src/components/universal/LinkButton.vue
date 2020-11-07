@@ -5,7 +5,13 @@
 <script>
 export default {
   props: {
-    route: String,
+    route: {
+      type: String,
+      required: true,
+    },
+  },
+  setup(props) {
+    console.log(props);
   },
 };
 </script>

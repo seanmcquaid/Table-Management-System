@@ -1,14 +1,8 @@
 <template>
-  <button @click="onClick"><slot /></button>
+  <button><slot /></button>
 </template>
 
-<script>
-export default {
-  props: {
-    onClick: Function,
-  },
-};
-</script>
+<script></script>
 
 <style scoped>
 button {

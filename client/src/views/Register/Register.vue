@@ -1,15 +1,10 @@
 <template>
   <PageLayout>
-    <H1>Login</H1>
+    <H1>Register</H1>
     <form @submit.prevent="onSubmit">
-      <TextInput
-        @input="inputOnChange"
-        name="username"
-        :value="state.username"
-        label="Username"
-        placeholder="Username here"
-      />
-      <Button type="submit">Login</Button>
+      <input v-model="state.username" name="username" type="text" />
+      <input v-model="state.password" name="password" type="text" />
+      <Button type="submit">Register</Button>
     </form>
   </PageLayout>
 </template>
@@ -19,26 +14,20 @@ import { reactive } from 'vue';
 import PageLayout from '@/layouts/PageLayout.vue';
 import H1 from '@/components/universal/Typography/H1.vue';
 import Button from '@/components/universal/Button.vue';
-import TextInput from '@/components/universal/TextInput.vue';
 
 export default {
-  name: 'Login',
+  name: 'Register',
   components: {
     PageLayout,
     H1,
     Button,
-    TextInput,
   },
   setup() {
     const state = reactive({
       username: '',
       password: '',
+      confirmPassword: '',
     });
-
-    const inputOnChange = event => {
-      state[event.target.name] = event.target.value;
-      console.log(state);
-    };
 
     const onSubmit = () => {
       console.log(state);
@@ -47,7 +36,6 @@ export default {
     return {
       state,
       onSubmit,
-      inputOnChange,
     };
   },
 };
