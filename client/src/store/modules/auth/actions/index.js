@@ -10,9 +10,8 @@ const authActions = {
       .then(({ data }) => {
         commit('loginSuccess', data);
       })
-      .catch(err => {
-        console.log(err);
-        // commit('loginError', err);
+      .catch(({ graphQLErrors }) => {
+        commit('loginError', graphQLErrors);
       });
   },
 };
