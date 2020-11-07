@@ -11,7 +11,8 @@ const authActions = {
         commit('loginSuccess', data);
       })
       .catch(err => {
-        commit('loginError', err);
+        console.log(err);
+        // commit('loginError', err);
       });
   },
 };
