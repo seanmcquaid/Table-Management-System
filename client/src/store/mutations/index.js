@@ -1,9 +1,12 @@
 const mutations = {
-  loading: state => {
+  startLoading: state => {
     state.isLoading = true;
     state.errorMessage = null;
   },
-  error: (state, { errorMessage }) => {
+  stopLoading: state => {
+    state.isLoading = false;
+  },
+  setErrorMessage: (state, { errorMessage }) => {
     state.errorMessage = errorMessage;
   },
 };
