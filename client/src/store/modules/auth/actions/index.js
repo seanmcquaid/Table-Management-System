@@ -18,6 +18,7 @@ const authActions = {
         });
       });
   },
+  registerAction: ({ commit }, payload) => {},
 };
 
 export default authActions;
