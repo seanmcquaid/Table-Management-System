@@ -19,13 +19,9 @@
         placeholder="Password here"
         type="password"
       />
-      <P>
-        {{
-          password !== confirmPassword
-            ? 'These two passwords must match!'
-            : null
-        }}
-      </P>
+      <span v-if="password !== confirmPassword">
+        These two passwords must match!
+      </span>
       <TextInput
         @input="inputOnChange"
         name="confirmPassword"
@@ -42,7 +38,7 @@
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
+import { computed, reactive, toRefs } from 'vue';
 import PageLayout from '@/layouts/PageLayout.vue';
 import H1 from '@/components/universal/Typography/H1.vue';
 import P from '@/components/universal/Typography/P.vue';
@@ -60,9 +56,7 @@ export default {
   },
   setup() {
     const store = useStore();
-    const {
-      state: { errorMessage },
-    } = store;
+    const errorMessage = computed(() => store.state.errorMessage);
     const state = reactive({
       username: '',
       password: '',

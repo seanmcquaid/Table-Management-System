@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
+import { computed, reactive, toRefs } from 'vue';
 import PageLayout from '@/layouts/PageLayout.vue';
 import H1 from '@/components/universal/Typography/H1.vue';
 import P from '@/components/universal/Typography/P.vue';
@@ -34,7 +34,6 @@ import TextInput from '@/components/universal/TextInput.vue';
 import { useStore } from 'vuex';
 
 export default {
-  name: 'Login',
   components: {
     PageLayout,
     H1,
@@ -44,9 +43,7 @@ export default {
   },
   setup() {
     const store = useStore();
-    const {
-      state: { errorMessage },
-    } = store;
+    const errorMessage = computed(() => store.state.errorMessage);
     const state = reactive({
       username: '',
       password: '',
