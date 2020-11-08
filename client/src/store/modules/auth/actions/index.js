@@ -11,7 +11,11 @@ const authActions = {
         commit('loginSuccess', data);
       })
       .catch(({ graphQLErrors }) => {
-        commit('loginError', graphQLErrors);
+        commit('error', {
+          errorMessage:
+            graphQLErrors[0].message ??
+            'There was a problem logging in, please try again!',
+        });
       });
   },
 };

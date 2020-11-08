@@ -1,7 +1,7 @@
 <template>
   <PageLayout>
     <H1>Login</H1>
-    <P></P>
+    <P>{{ errorMessage }}</P>
     <form @submit.prevent="onSubmit">
       <TextInput
         @input="inputOnChange"
@@ -44,6 +44,9 @@ export default {
   },
   setup() {
     const store = useStore();
+    const {
+      state: { errorMessage },
+    } = store;
     const state = reactive({
       username: '',
       password: '',
@@ -54,16 +57,22 @@ export default {
     };
 
     const onSubmit = () => {
-      store.dispatch('loginAction', {
-        username: state.username,
-        password: state.password,
-      });
+      store
+        .dispatch('loginAction', {
+          username: state.username,
+          password: state.password,
+        })
+        .then(() => {
+          console.log('good');
+        })
+        .catch(() => console.log('err'));
     };
 
     return {
       ...toRefs(state),
       onSubmit,
       inputOnChange,
+      errorMessage,
     };
   },
 };
