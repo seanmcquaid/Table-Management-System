@@ -10,6 +10,9 @@ const resolvers = {
       const user = {};
       if (token) {
         console.log(token);
+        // decode token and use this to find user info
+        const userInfo = jwt.decode(token);
+        console.log(userInfo);
         return await User.findOne({ where: { id: user.id } });
       }
       throw new Error("Sorry, you're not currently authenticated!");
