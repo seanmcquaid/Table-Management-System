@@ -9,8 +9,8 @@ const authActions = {
     return userService
       .login(username, password)
       .then(({ data }) => {
-        // structure payload
-        commit('loginSuccess', data);
+        const { login } = data;
+        commit('loginSuccess', { token: login });
       })
       .catch(({ graphQLErrors }) => {
         commit('setErrorMessage', {
@@ -31,8 +31,8 @@ const authActions = {
     return userService
       .register(username, password)
       .then(({ data }) => {
-        // structure payload
-        commit('registerSuccess', data);
+        const { register } = data;
+        commit('registerSuccess', { token: register });
       })
       .catch(({ graphQLErrors }) => {
         commit('setErrorMessage', {

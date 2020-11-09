@@ -28,9 +28,9 @@
         :value="confirmPassword"
         label="Confirm Password"
         placeholder="Confirm password here"
-        type="confirmPassword"
+        type="password"
       />
-      <Button type="submit" disabled="{{password !== confirmPassword}}">
+      <Button type="submit" :disabled="!ableToSubmit">
         Register
       </Button>
     </form>
@@ -62,13 +62,17 @@ export default {
       password: '',
       confirmPassword: '',
     });
+    const ableToSubmit = computed(
+      () =>
+        state.password === state.confirmPassword && state.password.length > 0
+    );
 
     const inputOnChange = event => {
       state[event.target.name] = event.target.value;
     };
 
     const onSubmit = () => {
-      if (state.password === state.confirmPassword) {
+      if (ableToSubmit.value) {
         store.dispatch('registerAction', {
           username: state.username,
           password: state.password,
@@ -78,6 +82,7 @@ export default {
 
     return {
       ...toRefs(state),
+      ableToSubmit,
       onSubmit,
       inputOnChange,
       errorMessage,

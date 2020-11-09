@@ -1,11 +1,15 @@
 const authMutations = {
   loginSuccess: (state, payload) => {
-    // add token to local storage
-    console.log(state, payload);
+    const { token } = payload;
+
+    localStorage.setItem('token', token);
+    state.token = token;
   },
   registerSuccess: (state, payload) => {
-    // add token to local storage
-    console.log(state, payload);
+    const { token } = payload;
+
+    localStorage.setItem('token', token);
+    state.token = token;
   },
 };
 
