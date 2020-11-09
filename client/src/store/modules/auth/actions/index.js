@@ -5,9 +5,11 @@ const authActions = {
     commit('startLoading');
 
     const { username, password } = payload;
+
     return userService
       .login(username, password)
       .then(({ data }) => {
+        // structure payload
         commit('loginSuccess', data);
       })
       .catch(({ graphQLErrors }) => {
@@ -21,7 +23,28 @@ const authActions = {
         commit('stopLoading');
       });
   },
-  registerAction: ({ commit }, payload) => {},
+  registerAction: ({ commit }, payload) => {
+    commit('startLoading');
+
+    const { username, password } = payload;
+
+    return userService
+      .register(username, password)
+      .then(({ data }) => {
+        // structure payload
+        commit('registerSuccess', data);
+      })
+      .catch(({ graphQLErrors }) => {
+        commit('setErrorMessage', {
+          errorMessage:
+            graphQLErrors[0].message ??
+            'There was a problem logging in, please try again!',
+        });
+      })
+      .finally(() => {
+        commit('stopLoading');
+      });
+  },
 };
 
 export default authActions;
