@@ -32,6 +32,7 @@ import P from '@/components/universal/Typography/P.vue';
 import Button from '@/components/universal/Button.vue';
 import TextInput from '@/components/universal/TextInput.vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
 export default {
   components: {
@@ -43,6 +44,7 @@ export default {
   },
   setup() {
     const store = useStore();
+    const router = useRouter();
     const errorMessage = computed(() => store.state.errorMessage);
     const state = reactive({
       username: '',
@@ -60,7 +62,9 @@ export default {
           password: state.password,
         })
         .then(() => {
-          console.log('good');
+          if (!errorMessage.value) {
+            router.push('/');
+          }
         })
         .catch(() => console.log('err'));
     };

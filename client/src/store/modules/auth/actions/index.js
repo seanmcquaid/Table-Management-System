@@ -10,17 +10,17 @@ const authActions = {
       .login(username, password)
       .then(({ data }) => {
         const { login } = data;
-        commit('loginSuccess', { token: login });
+        return commit('loginSuccess', { token: login });
       })
       .catch(({ graphQLErrors }) => {
-        commit('setErrorMessage', {
+        return commit('setErrorMessage', {
           errorMessage:
             graphQLErrors[0].message ??
             'There was a problem logging in, please try again!',
         });
       })
       .finally(() => {
-        commit('stopLoading');
+        return commit('stopLoading');
       });
   },
   registerAction: ({ commit }, payload) => {

@@ -6,8 +6,10 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 const resolvers = {
   Query: {
-    getUserInfo: async (_, args, { user }) => {
-      if (user) {
+    getUserInfo: async (_, args, { token }) => {
+      const user = {};
+      if (token) {
+        console.log(token);
         return await User.findOne({ where: { id: user.id } });
       }
       throw new Error("Sorry, you're not currently authenticated!");
@@ -45,7 +47,6 @@ const resolvers = {
       }
 
       const isPasswordValid = await bcrypt.compare(password, user.password);
-      console.log(await bcrypt.compare(password, user.password));
 
       if (!isPasswordValid) {
         throw new Error('You password is incorrect!');
