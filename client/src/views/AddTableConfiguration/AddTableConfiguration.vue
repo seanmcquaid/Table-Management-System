@@ -1,5 +1,7 @@
 <template>
-  <PageLayout><H1>Table Management System</H1></PageLayout>
+  <PageLayout>
+    <H1>Add Tables Configuration</H1>
+  </PageLayout>
 </template>
 
 <script>

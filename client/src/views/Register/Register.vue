@@ -45,6 +45,7 @@ import P from '@/components/universal/Typography/P.vue';
 import Button from '@/components/universal/Button.vue';
 import TextInput from '@/components/universal/TextInput.vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
 export default {
   components: {
@@ -56,6 +57,7 @@ export default {
   },
   setup() {
     const store = useStore();
+    const router = useRouter();
     const errorMessage = computed(() => store.state.errorMessage);
     const state = reactive({
       username: '',
@@ -73,10 +75,17 @@ export default {
 
     const onSubmit = () => {
       if (ableToSubmit.value) {
-        store.dispatch('registerAction', {
-          username: state.username,
-          password: state.password,
-        });
+        store
+          .dispatch('registerAction', {
+            username: state.username,
+            password: state.password,
+          })
+          .then(() => {
+            if (!errorMessage.value) {
+              router.push('/tableManagement');
+            }
+          })
+          .catch(() => console.log('err'));
       }
     };
 

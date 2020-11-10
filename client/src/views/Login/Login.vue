@@ -63,7 +63,7 @@ export default {
         })
         .then(() => {
           if (!errorMessage.value) {
-            router.push('/');
+            router.push('/tableManagement');
           }
         })
         .catch(() => console.log('err'));
