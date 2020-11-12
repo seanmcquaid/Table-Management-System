@@ -4,7 +4,7 @@ const userTypeDefs = gql`
   type User {
     id: Int
     username: String
-    seatingCapacity: Float
+    seatingCapacity: Int
   }
 
   type Query {
@@ -15,7 +15,7 @@ const userTypeDefs = gql`
   type Mutation {
     register(username: String!, password: String!): String
     login(username: String!, password: String!): String
-    updateSeatingCapacity(seatingCapacity: Float!): Float
+    updateSeatingCapacity(seatingCapacity: Int!): Int
   }
 `;
 
