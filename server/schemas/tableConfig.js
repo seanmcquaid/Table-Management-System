@@ -16,7 +16,7 @@ const tableConfigTypeDefs = gql`
   }
 
   type Query {
-    getTableConfigInfo(): TableConfig
+    getTableConfigInfo(id: Int!): TableConfig
     getAllTableConfigs: [TableConfig]
   }
 
