@@ -54,7 +54,20 @@ const resolvers = {
         tables,
       };
     },
-    editTable: (_, { name, seats }, { token }) => {},
+    editTable: (_, { name, seats }, { token }) => {
+      const userInfo = jwt.decode(token);
+
+      const { username, seatingCapacity } = await User.findOne({
+        where: { username: userInfo.username },
+      });
+
+      await Table.update({
+        name,
+        seats,
+      }, {});
+
+      const tables = await Table.findAll({ where: { username } });
+    },
     changeTableAvailability: (_, { name, isAvailable }, { token }) => {},
     deleteTable: (_, { name }, { token }) => {},
   },

@@ -6,6 +6,7 @@ const tableConfigTypeDefs = gql`
     seats: Int
     isAvailable: Boolean
     username: String
+    id: Int
   }
 
   type TableConfig {
