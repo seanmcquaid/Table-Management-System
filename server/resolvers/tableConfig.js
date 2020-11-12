@@ -17,7 +17,7 @@ const resolvers = {
         },
       });
     },
-    getAllTableConfigs: (_, args, { token }) => {
+    getAllTableConfigs: async (_, args, { token }) => {
       const userInfo = jwt.decode(token);
 
       const { username } = await User.findOne({
@@ -28,7 +28,7 @@ const resolvers = {
         where: {
           username,
         },
-      })
+      });
     },
   },
   Mutation: {
