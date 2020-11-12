@@ -1,5 +1,5 @@
-const userResolvers = require('./user');
-const tableConfigResolvers = require('./tableConfig');
+const userResolvers = require("./user");
+const tableConfigResolvers = require("./tableConfig");
 
 const resolvers = {
   ...userResolvers,

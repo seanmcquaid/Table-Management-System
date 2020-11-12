@@ -1,7 +1,7 @@
-const { User } = require('../models');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
+const { User } = require("../models");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const resolvers = {
@@ -26,7 +26,7 @@ const resolvers = {
       const user = await User.findOne({ where: { username } });
 
       if (user) {
-        throw new Error('Sorry, this user already exists. Please try again!');
+        throw new Error("Sorry, this user already exists. Please try again!");
       }
 
       const createdUser = await User.create({
@@ -39,7 +39,7 @@ const resolvers = {
         { id: createdUser.id, username: createdUser.username },
         JWT_SECRET,
         {
-          expiresIn: '1d',
+          expiresIn: "1d",
         }
       );
     },
@@ -53,16 +53,16 @@ const resolvers = {
       const isPasswordValid = await bcrypt.compare(password, user.password);
 
       if (!isPasswordValid) {
-        throw new Error('You password is incorrect!');
+        throw new Error("You password is incorrect!");
       }
 
       return jwt.sign({ id: user.id, username: user.password }, JWT_SECRET, {
-        expiresIn: '1d',
+        expiresIn: "1d",
       });
     },
     updateSeatingCapacity: async (_, { seatingCapacity }, { token }) => {
       if (!token) {
-        throw new Error('Invalid token!');
+        throw new Error("Invalid token!");
       }
 
       const userInfo = jwt.decode(token);

@@ -1,5 +1,5 @@
-const userTypeDefs = require('./user');
-const tableConfigTypeDefs = require('./tableConfig');
+const userTypeDefs = require("./user");
+const tableConfigTypeDefs = require("./tableConfig");
 
 const schemas = {
   ...userTypeDefs,
