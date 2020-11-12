@@ -1,9 +1,9 @@
-const userResolvers = require("./user");
-const tableConfigResolvers = require("./tableConfig");
+const userResolvers = require('./user');
+const tableResolvers = require('./table');
 
 const resolvers = {
   ...userResolvers,
-  ...tableConfigResolvers,
+  ...tableResolvers,
 };
 
 module.exports = resolvers;

@@ -1,4 +1,4 @@
-const { gql } = require("apollo-server-express");
+const { gql } = require('apollo-server-express');
 
 const tableConfigTypeDefs = gql`
   type Table {
@@ -12,11 +12,10 @@ const tableConfigTypeDefs = gql`
     seatingCapacity: Int
     tables: [Table]
     username: String
-    id: Int
   }
 
   type Query {
-    getTableConfigInfo(id: Int!): TableConfig
+    getTableConfigInfo: TableConfig
     getAllTableConfigs: [TableConfig]
   }
 
