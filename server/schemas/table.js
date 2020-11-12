@@ -1,6 +1,6 @@
 const { gql } = require('apollo-server-express');
 
-const tableConfigTypeDefs = gql`
+const tableTypeDefs = gql`
   type Table {
     name: String
     seats: Int
@@ -28,4 +28,4 @@ const tableConfigTypeDefs = gql`
   }
 `;
 
-module.exports = tableConfigTypeDefs;
+module.exports = tableTypeDefs;
