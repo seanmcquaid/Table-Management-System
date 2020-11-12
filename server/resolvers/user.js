@@ -60,6 +60,21 @@ const resolvers = {
         expiresIn: '1d',
       });
     },
+    updateSeatingCapacity: async (_, { seatingCapacity }, { token }) => {
+      if (!token) {
+        throw new Error('Invalid token!');
+      }
+
+      const userInfo = jwt.decode(token);
+
+      await User.update({ seatingCapacity }, { where: { id: userInfo.id } });
+
+      const updatedUserInfo = await User.findOne({
+        where: { id: userInfo.id },
+      });
+
+      return updatedUserInfo.seatingCapacity;
+    },
   },
 };
 
