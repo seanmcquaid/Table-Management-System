@@ -22,9 +22,9 @@ const tableConfigTypeDefs = gql`
 
   type Mutation {
     addTable(name: String!, seats: Int!): TableConfig
-    editTable(name: String!, seats: Int!): TableConfig
-    changeTableAvailability(name: String!, isAvailable: Boolean!): TableConfig
-    deleteTable(name: String!): TableConfig
+    editTable(id: Int!, name: String!, seats: Int!): TableConfig
+    changeTableAvailability(id: Int!, isAvailable: Boolean!): TableConfig
+    deleteTable(id: Int!): TableConfig
   }
 `;
 

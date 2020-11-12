@@ -54,22 +54,68 @@ const resolvers = {
         tables,
       };
     },
-    editTable: (_, { name, seats }, { token }) => {
+    editTable: async (_, { id, name, seats }, { token }) => {
       const userInfo = jwt.decode(token);
 
       const { username, seatingCapacity } = await User.findOne({
         where: { username: userInfo.username },
       });
 
-      await Table.update({
-        name,
-        seats,
-      }, {});
+      await Table.update(
+        {
+          name,
+          seats,
+        },
+        { where: { id } }
+      );
 
       const tables = await Table.findAll({ where: { username } });
+
+      return {
+        username,
+        seatingCapacity,
+        tables,
+      };
     },
-    changeTableAvailability: (_, { name, isAvailable }, { token }) => {},
-    deleteTable: (_, { name }, { token }) => {},
+    changeTableAvailability: async (_, { id, isAvailable }, { token }) => {
+      const userInfo = jwt.decode(token);
+
+      const { username, seatingCapacity } = await User.findOne({
+        where: { username: userInfo.username },
+      });
+
+      await Table.update(
+        {
+          isAvailable,
+        },
+        { where: { id } }
+      );
+
+      const tables = await Table.findAll({ where: { username } });
+
+      return {
+        username,
+        seatingCapacity,
+        tables,
+      };
+    },
+    deleteTable: async (_, { id }, { token }) => {
+      const userInfo = jwt.decode(token);
+
+      const { username, seatingCapacity } = await User.findOne({
+        where: { username: userInfo.username },
+      });
+
+      await Table.destroy({ where: { id } });
+
+      const tables = await Table.findAll({ where: { username } });
+
+      return {
+        username,
+        seatingCapacity,
+        tables,
+      };
+    },
   },
 };
 
