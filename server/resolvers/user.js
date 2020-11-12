@@ -32,6 +32,7 @@ const resolvers = {
       const createdUser = await User.create({
         username,
         password: await bcrypt.hash(password, 10),
+        seatingCapacity: 0,
       });
 
       return jwt.sign(

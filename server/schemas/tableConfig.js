@@ -2,20 +2,21 @@ const { gql } = require('apollo-server-express');
 
 const tableConfigTypeDefs = gql`
   type Table {
-    name: String!
-    seats: Float!
-    isAvailable: Boolean!
+    name: String
+    seats: Float
+    isAvailable: Boolean
+    username: String
   }
 
   type TableConfig {
-    seatingCapacity: Float!
-    tables: [Table!]!
-    username: String!
+    seatingCapacity: Float
+    tables: [Table]
+    username: String
   }
 
   type Query {
-    getTableConfigInfo: TableConfig!
-    getAllTableConfigs: [TableConfig!]!
+    getTableConfigInfo: TableConfig
+    getAllTableConfigs: [TableConfig]
   }
 
   type Mutation {
