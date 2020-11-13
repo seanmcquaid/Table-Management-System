@@ -1,6 +1,6 @@
 <template>
   <PageLayout>
-    <H1>Add Tables Configuration</H1>
+    <H1>Table Configurations</H1>
   </PageLayout>
 </template>
 
