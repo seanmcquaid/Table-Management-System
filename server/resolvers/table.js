@@ -18,6 +18,9 @@ const resolvers = {
         tables,
       };
     },
+    getTableInfo: async (_, { id }) => {
+      return await Table.findOne({ where: { id } });
+    },
   },
   Mutation: {
     addTable: async (_, { name, seats }, { token }) => {
