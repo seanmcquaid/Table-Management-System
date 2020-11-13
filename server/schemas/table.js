@@ -17,7 +17,6 @@ const tableTypeDefs = gql`
 
   type Query {
     getTableConfigInfo: TableConfig
-    getAllTableConfigs: [TableConfig]
   }
 
   type Mutation {
