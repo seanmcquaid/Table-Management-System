@@ -1,4 +1,4 @@
-import AddTableConfiguration from '../views/AddTableConfiguration/AddTableConfiguration.vue';
+import TableConfigurations from '../views/TableConfigurations/TableConfigurations.vue';
 import TableManagement from '../views/TableManagement/TableManagement.vue';
 // import store from '../store';
 
@@ -17,9 +17,9 @@ const protectedRoutes = [
     component: TableManagement,
   },
   {
-    path: '/addTableConfiguration',
-    name: 'AddTableConfiguration',
-    component: AddTableConfiguration,
+    path: '/tableConfigurations',
+    name: 'TableConfigurations',
+    component: TableConfigurations,
   },
 ];
 export default protectedRoutes;

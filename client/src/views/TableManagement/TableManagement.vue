@@ -2,8 +2,14 @@
   <PageLayout>
     <H1>Table Management System</H1>
     <div class="linkButtonsContainer">
-      <LinkButton route="/addTableConfiguration">
-        Add Table Configuration
+      <LinkButton route="/tableConfigurations">
+        Table Configurations
+      </LinkButton>
+      <LinkButton route="/currentTables">
+        Current Tables
+      </LinkButton>
+      <LinkButton route="/profile">
+        Profile
       </LinkButton>
     </div>
   </PageLayout>
