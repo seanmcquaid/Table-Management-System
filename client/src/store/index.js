@@ -1,6 +1,6 @@
 import { createStore } from 'vuex';
 import auth from './modules/auth';
-import tableConfigs from './modules/tableConfigs';
+import tableConfig from './modules/tableConfig';
 import state from './state';
 import actions from './actions';
 import getters from './getters';
@@ -13,6 +13,6 @@ export default createStore({
   state,
   modules: {
     auth,
-    tableConfigs,
+    tableConfig,
   },
 });
