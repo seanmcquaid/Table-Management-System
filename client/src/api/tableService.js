@@ -4,8 +4,8 @@ export const getTableConfigInfo = () => {};
 
 export const getTableInfo = id => {};
 
-export const addTable = tableInfo => {};
+export const addTable = (name, seats) => {};
 
 export const deleteTable = (id, isAvailable) => {};
 
-export const editTable = tableInfo => {};
+export const editTable = (id, name, seats) => {};
