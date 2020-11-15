@@ -1,14 +1,5 @@
 import gql from 'graphql-tag';
 
-export const getUserInfoQuery = gql`
-  query {
-    getUserInfo {
-      username
-      id
-    }
-  }
-`;
-
 export const getTableConfigQuery = gql`
   query {
     getTableConfig {
