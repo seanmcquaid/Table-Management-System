@@ -11,3 +11,9 @@ export const registerMutation = gql`
     register(username: $username, password: $password)
   }
 `;
+
+export const updateSeatingCapacityMutation = gql`
+  mutation updateSeatingCapacityMutation($seatingCapacity: Int!) {
+    updateSeatingCapacity(seatingCapacity: $seatingCapacity)
+  }
+`;

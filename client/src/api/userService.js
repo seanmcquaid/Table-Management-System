@@ -1,5 +1,9 @@
 import { apolloClient } from '../apollo';
-import { loginMutation, registerMutation } from '../apollo/mutations/user';
+import {
+  loginMutation,
+  registerMutation,
+  updateSeatingCapacityMutation,
+} from '../apollo/mutations/user';
 import { getUserInfoQuery } from '../apollo/queries/user';
 
 export const getUserInfo = () =>
@@ -17,4 +21,10 @@ export const register = (username, password) =>
   apolloClient.mutate({
     mutation: registerMutation,
     variables: { username, password },
+  });
+
+export const updateSeatingCapacity = seatingCapacity =>
+  apolloClient.mutate({
+    mutation: updateSeatingCapacityMutation,
+    variables: { seatingCapacity },
   });
