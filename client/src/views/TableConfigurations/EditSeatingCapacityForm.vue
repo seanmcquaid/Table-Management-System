@@ -1,18 +1,36 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <TextInput />
+    <span v-if="!containsNums">
+      ONLY use numbers for seating capacity!
+    </span>
+    <TextInput
+      @input="inputOnChange"
+      name="seatingCapacity"
+      :value="seatCapacity"
+      label="Seating Capacity"
+      placeholder="Seating capacity here"
+      type="text"
+    />
+    <Button type="submit" :disabled="!containsNums">
+      Add Table
+    </Button>
   </form>
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
+import { computed, reactive, toRefs } from 'vue';
 import TextInput from '../../components/universal/TextInput.vue';
+import Button from '../../components/universal/Button.vue';
 import { useStore } from 'vuex';
 export default {
-  components: { TextInput },
+  components: { TextInput, Button },
   setup() {
     const store = useStore();
-    const state = reactive({});
+    const seatingCapacity = computed(
+      () => store.state.tableConfig.seatingCapacity
+    );
+    const state = reactive({ seatingCapacity });
+    const containsNums = computed(() => state.seatingCapacity.match(/\D+/));
 
     const onSubmit = () => {
       store.dispatch('updateSeatingCapacityAction', {});
@@ -21,6 +39,7 @@ export default {
     return {
       ...toRefs(state),
       onSubmit,
+      containsNums,
     };
   },
 };
