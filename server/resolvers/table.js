@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const resolvers = {
   Query: {
-    getTableConfigInfo: async (_, args, { token }) => {
+    getTableConfig: async (_, args, { token }) => {
       const userInfo = jwt.decode(token);
 
       const { username, seatingCapacity } = await User.findOne({
@@ -18,7 +18,7 @@ const resolvers = {
         tables,
       };
     },
-    getTableInfo: async (_, { id }) => {
+    getTable: async (_, { id }) => {
       return await Table.findOne({ where: { id } });
     },
   },
