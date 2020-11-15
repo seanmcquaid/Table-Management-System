@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { onMounted, reactive, toRefs } from 'vue';
+import { reactive, toRefs } from 'vue';
 import TextInput from '../../components/universal/TextInput.vue';
 import { useStore } from 'vuex';
 export default {
@@ -13,10 +13,6 @@ export default {
   setup() {
     const store = useStore();
     const state = reactive({});
-
-    onMounted(() => {
-      store.dispatch('getSeatingCapacityAction');
-    });
 
     const onSubmit = () => {
       store.dispatch('updateSeatingCapacityAction', {});

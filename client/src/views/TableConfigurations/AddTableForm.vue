@@ -1,6 +1,21 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <TextInput />
+    <TextInput
+      @input="inputOnChange"
+      name="name"
+      :value="name"
+      label="Name"
+      placeholder="Table name here"
+      type="text"
+    />
+    <TextInput
+      @input="inputOnChange"
+      name="seats"
+      :value="seats"
+      label="Seats"
+      placeholder="Table seats here"
+      type="text"
+    />
   </form>
 </template>
 
@@ -11,11 +26,13 @@ import { useStore } from 'vuex';
 export default {
   components: { TextInput },
   setup() {
-    const state = reactive({});
+    const state = reactive({ name: '', seats: 0 });
     const store = useStore();
 
     const onSubmit = () => {
-      store.dispatch('addTableAction', {});
+      store.dispatch('addTableAction', {
+        ...state,
+      });
     };
 
     return {
