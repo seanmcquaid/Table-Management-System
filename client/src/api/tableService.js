@@ -1,8 +1,14 @@
 import { apolloClient } from '../apollo';
+import {} from '../apollo/mutations';
+import { getTableQuery, getTableConfigQuery } from '../apollo/queries';
 
-export const getTableConfig = () => {};
+export const getTableConfig = () =>
+  apolloClient.query({
+    query: getTableConfigQuery,
+  });
 
-export const getTable = id => {};
+export const getTable = id =>
+  apolloClient.query({ query: getTableQuery, variables: { id } });
 
 export const addTable = (name, seats) => {};
 

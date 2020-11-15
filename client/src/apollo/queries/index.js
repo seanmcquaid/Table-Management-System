@@ -18,7 +18,7 @@ export const getTableConfigQuery = gql`
   }
 `;
 
-export const getTable = gql`
+export const getTableQuery = gql`
   query getTableQuery($id: Int!) {
     getTable(id: $id) {
       name
