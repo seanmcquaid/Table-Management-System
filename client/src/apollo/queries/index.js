@@ -8,3 +8,11 @@ export const getUserInfoQuery = gql`
     }
   }
 `;
+
+export const getTableConfigQuery = gql``;
+
+export const getTable = gql`
+  query getTableQuery($id: Int!) {
+    getTable(id: $id)
+  }
+`;
