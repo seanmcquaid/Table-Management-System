@@ -4,8 +4,8 @@ import {
   changeTableAvailabilityMutation,
   deleteTableMutation,
   editTableMutation,
-} from '../apollo/mutations';
-import { getTableQuery, getTableConfigQuery } from '../apollo/queries';
+} from '../apollo/mutations/table';
+import { getTableQuery, getTableConfigQuery } from '../apollo/queries/table';
 
 export const getTableConfig = () =>
   apolloClient.query({

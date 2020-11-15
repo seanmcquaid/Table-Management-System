@@ -1,6 +1,6 @@
 import { apolloClient } from '../apollo';
-import { loginMutation, registerMutation } from '../apollo/mutations';
-import { getUserInfoQuery } from '../apollo/queries';
+import { loginMutation, registerMutation } from '../apollo/mutations/user';
+import { getUserInfoQuery } from '../apollo/queries/user';
 
 export const getUserInfo = () =>
   apolloClient.query({
