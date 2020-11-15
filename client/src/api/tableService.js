@@ -1,5 +1,10 @@
 import { apolloClient } from '../apollo';
-import {} from '../apollo/mutations';
+import {
+  addTableMutation,
+  changeTableAvailabilityMutation,
+  deleteTableMutation,
+  editTableMutation,
+} from '../apollo/mutations';
 import { getTableQuery, getTableConfigQuery } from '../apollo/queries';
 
 export const getTableConfig = () =>
@@ -10,10 +15,26 @@ export const getTableConfig = () =>
 export const getTable = id =>
   apolloClient.query({ query: getTableQuery, variables: { id } });
 
-export const addTable = (name, seats) => {};
+export const addTable = (name, seats) =>
+  apolloClient.mutate({
+    mutation: addTableMutation,
+    variables: { name, seats },
+  });
 
-export const deleteTable = id => {};
+export const deleteTable = id =>
+  apolloClient.mutate({
+    mutation: deleteTableMutation,
+    variables: { id },
+  });
 
-export const editTable = (id, name, seats) => {};
+export const editTable = (id, name, seats) =>
+  apolloClient.mutate({
+    mutation: editTableMutation,
+    variables: { id, name, seats },
+  });
 
-export const changeTableAvailability = (id, isAvailable) => {};
+export const changeTableAvailability = (id, isAvailable) =>
+  apolloClient.mutate({
+    mutation: changeTableAvailabilityMutation,
+    variables: { id, isAvailable },
+  });
