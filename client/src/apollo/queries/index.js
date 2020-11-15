@@ -9,10 +9,21 @@ export const getUserInfoQuery = gql`
   }
 `;
 
-export const getTableConfigQuery = gql``;
+export const getTableConfigQuery = gql`
+  query {
+    getTableConfig {
+      seatingCapacity
+      tables
+    }
+  }
+`;
 
 export const getTable = gql`
   query getTableQuery($id: Int!) {
-    getTable(id: $id)
+    getTable(id: $id) {
+      name
+      seats
+      id
+    }
   }
 `;
