@@ -1,14 +1,14 @@
 import * as tableService from '../../../../api/tableService';
 
 const actions = {
-  getTableConfigInfoAction: ({ commit }) => {
+  getTableConfigAction: ({ commit }) => {
     commit('startLoading');
 
     return tableService
-      .getTableConfigInfo()
+      .getTableConfig()
       .then(({ data }) => {
-        const { getTableConfigInfo } = data;
-        return commit('getTableConfigInfoSuccess', { ...getTableConfigInfo });
+        const { getTableConfig } = data;
+        return commit('getTableConfigSuccess', { ...getTableConfig });
       })
       .catch(({ graphQLErrors }) => {
         return commit('setErrorMessage', {
@@ -21,7 +21,28 @@ const actions = {
         return commit('stopLoading');
       });
   },
-  addTableAction: ({ commit }, payload) => {},
+  addTableAction: ({ commit }, payload) => {
+    commit('startLoading');
+
+    const { name, seats } = payload;
+
+    return tableService
+      .addTable(name, seats)
+      .then(({ data }) => {
+        const { addTable } = data;
+        return commit('addTableSuccess', { ...addTable });
+      })
+      .catch(({ graphQLErrors }) => {
+        return commit('setErrorMessage', {
+          errorMessage:
+            graphQLErrors[0].message ??
+            'There was a problem logging in, please try again!',
+        });
+      })
+      .finally(() => {
+        return commit('stopLoading');
+      });
+  },
   editTableAction: ({ commit }, payload) => {},
   changeTableAvailabilityAction: ({ commit }, payload) => {},
   deleteTableAction: ({ commit }, payload) => {},
