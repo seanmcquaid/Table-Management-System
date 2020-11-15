@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
-export const getUserInfo = gql`
-  mutation {
+export const getUserInfoQuery = gql`
+  query {
     getUserInfo {
       username
       id

@@ -1,5 +1,11 @@
 import { apolloClient } from '../apollo';
 import { loginMutation, registerMutation } from '../apollo/mutations';
+import { getUserInfoQuery } from '../apollo/queries';
+
+export const getUserInfo = () =>
+  apolloClient.query({
+    query: getUserInfoQuery,
+  });
 
 export const login = (username, password) =>
   apolloClient.mutate({
