@@ -16,18 +16,23 @@
       placeholder="Table seats here"
       type="text"
     />
+    <Button type="submit" :disabled="!ableToSubmit">
+      Add Table
+    </Button>
   </form>
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
+import { computed, reactive, toRefs } from 'vue';
 import TextInput from '../../components/universal/TextInput.vue';
+import Button from '../../components/universal/Button.vue';
 import { useStore } from 'vuex';
 export default {
-  components: { TextInput },
+  components: { TextInput, Button },
   setup() {
     const state = reactive({ name: '', seats: 0 });
     const store = useStore();
+    const ableToSubmit = computed(() => state.name.match(/\D+/));
 
     const onSubmit = () => {
       store.dispatch('addTableAction', {
@@ -38,6 +43,7 @@ export default {
     return {
       ...toRefs(state),
       onSubmit,
+      ableToSubmit,
     };
   },
 };
