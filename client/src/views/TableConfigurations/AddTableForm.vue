@@ -8,6 +8,9 @@
       placeholder="Table name here"
       type="text"
     />
+    <span v-if="!containsNums">
+      ONLY use numbers for seats!
+    </span>
     <TextInput
       @input="inputOnChange"
       name="seats"
@@ -16,7 +19,7 @@
       placeholder="Table seats here"
       type="text"
     />
-    <Button type="submit" :disabled="!ableToSubmit">
+    <Button type="submit" :disabled="!containsNums">
       Add Table
     </Button>
   </form>
@@ -32,7 +35,7 @@ export default {
   setup() {
     const state = reactive({ name: '', seats: 0 });
     const store = useStore();
-    const ableToSubmit = computed(() => state.name.match(/\D+/));
+    const containsNums = computed(() => state.name.match(/\D+/));
 
     const onSubmit = () => {
       store.dispatch('addTableAction', {
@@ -43,7 +46,7 @@ export default {
     return {
       ...toRefs(state),
       onSubmit,
-      ableToSubmit,
+      containsNums,
     };
   },
 };
