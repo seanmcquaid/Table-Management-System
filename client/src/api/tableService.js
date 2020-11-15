@@ -1,11 +1,13 @@
 import { apolloClient } from '../apollo';
 
-export const getTableConfigInfo = () => {};
+export const getTableConfig = () => {};
 
-export const getTableInfo = id => {};
+export const getTable = id => {};
 
 export const addTable = (name, seats) => {};
 
-export const deleteTable = (id, isAvailable) => {};
+export const deleteTable = id => {};
 
 export const editTable = (id, name, seats) => {};
+
+export const changeTableAvailability = (id, isAvailable) => {};
