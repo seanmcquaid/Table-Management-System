@@ -37,6 +37,10 @@ export default {
     const store = useStore();
     const containsNums = computed(() => state.name.match(/\D+/));
 
+    const inputOnChange = event => {
+      state[event.target.name] = event.target.value;
+    };
+
     const onSubmit = () => {
       store.dispatch('addTableAction', {
         ...state,
@@ -47,6 +51,7 @@ export default {
       ...toRefs(state),
       onSubmit,
       containsNums,
+      inputOnChange,
     };
   },
 };

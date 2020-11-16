@@ -12,7 +12,7 @@
       type="text"
     />
     <Button type="submit" :disabled="!containsNums">
-      Add Table
+      Update Seating Capacity
     </Button>
   </form>
 </template>
@@ -32,14 +32,21 @@ export default {
     const state = reactive({ seatingCapacity });
     const containsNums = computed(() => state.seatingCapacity.match(/\D+/));
 
+    const inputOnChange = event => {
+      state[event.target.name] = event.target.value;
+    };
+
     const onSubmit = () => {
-      store.dispatch('updateSeatingCapacityAction', {});
+      store.dispatch('updateSeatingCapacityAction', {
+        ...state,
+      });
     };
 
     return {
       ...toRefs(state),
       onSubmit,
       containsNums,
+      inputOnChange,
     };
   },
 };
