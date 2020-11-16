@@ -1,4 +1,5 @@
 import * as tableService from '../../../../api/tableService';
+import * as userService from '../../../../api/userService';
 
 const actions = {
   getTableConfigAction: ({ commit }) => {
@@ -21,10 +22,8 @@ const actions = {
         return commit('stopLoading');
       });
   },
-  addTableAction: ({ commit }, payload) => {
+  addTableAction: ({ commit }, { name, seats }) => {
     commit('startLoading');
-
-    const { name, seats } = payload;
 
     return tableService
       .addTable(name, seats)
@@ -43,10 +42,8 @@ const actions = {
         return commit('stopLoading');
       });
   },
-  editTableAction: ({ commit }, payload) => {
+  editTableAction: ({ commit }, { id, name, seats }) => {
     commit('startLoading');
-
-    const { id, name, seats } = payload;
 
     return tableService
       .editTable(id, name, seats)
@@ -65,10 +62,8 @@ const actions = {
         return commit('stopLoading');
       });
   },
-  changeTableAvailabilityAction: ({ commit }, payload) => {
+  changeTableAvailabilityAction: ({ commit }, { id, isAvailable }) => {
     commit('startLoading');
-
-    const { id, isAvailable } = payload;
 
     return tableService
       .changeTableAvailability(id, isAvailable)
@@ -89,10 +84,8 @@ const actions = {
         return commit('stopLoading');
       });
   },
-  deleteTableAction: ({ commit }, payload) => {
+  deleteTableAction: ({ commit }, { id }) => {
     commit('startLoading');
-
-    const { id } = payload;
 
     return tableService
       .deleteTable(id)
@@ -100,6 +93,28 @@ const actions = {
         const { deleteTable } = data;
         return commit('deleteTableSuccess', {
           ...deleteTable,
+        });
+      })
+      .catch(({ graphQLErrors }) => {
+        return commit('setErrorMessage', {
+          errorMessage:
+            graphQLErrors[0].message ??
+            'There was a problem logging in, please try again!',
+        });
+      })
+      .finally(() => {
+        return commit('stopLoading');
+      });
+  },
+  updateSeatingCapacityAction: ({ commit }, { seatingCapacity }) => {
+    commit('startLoading');
+
+    return userService
+      .updateSeatingCapacity(seatingCapacity)
+      .then(({ data }) => {
+        const { updateSeatingCapacity } = data;
+        return commit('updateSeatingCapacitySuccess', {
+          ...updateSeatingCapacity,
         });
       })
       .catch(({ graphQLErrors }) => {

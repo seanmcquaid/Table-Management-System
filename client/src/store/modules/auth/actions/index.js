@@ -1,10 +1,8 @@
 import * as userService from '../../../../api/userService';
 
 const authActions = {
-  loginAction: ({ commit }, payload) => {
+  loginAction: ({ commit }, { username, password }) => {
     commit('startLoading');
-
-    const { username, password } = payload;
 
     return userService
       .login(username, password)
@@ -23,10 +21,8 @@ const authActions = {
         return commit('stopLoading');
       });
   },
-  registerAction: ({ commit }, payload) => {
+  registerAction: ({ commit }, { username, password }) => {
     commit('startLoading');
-
-    const { username, password } = payload;
 
     return userService
       .register(username, password)
