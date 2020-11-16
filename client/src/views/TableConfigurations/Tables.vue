@@ -3,7 +3,9 @@
     <li v-for="table in tables" :key="table.id">
       <span>{{ table.name }}</span>
       <LinkButton route="/editTable/{{table.id}}">Edit</LinkButton>
-      <Button type="button">Delete</Button>
+      <Button type="button" @click="deleteButtonOnClick(table.id)">
+        Delete
+      </Button>
     </li>
   </ul>
 </template>
