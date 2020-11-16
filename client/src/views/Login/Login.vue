@@ -25,7 +25,8 @@
 </template>
 
 <script>
-import { computed, reactive, toRefs } from 'vue';
+import { reactive, toRefs } from 'vue';
+import useErrorMessage from '@/composables/useErrorMessage';
 import PageLayout from '@/layouts/PageLayout.vue';
 import H1 from '@/components/universal/Typography/H1.vue';
 import P from '@/components/universal/Typography/P.vue';
@@ -45,7 +46,7 @@ export default {
   setup() {
     const store = useStore();
     const router = useRouter();
-    const errorMessage = computed(() => store.state.errorMessage);
+    const { errorMessage } = useErrorMessage();
     const state = reactive({
       username: '',
       password: '',

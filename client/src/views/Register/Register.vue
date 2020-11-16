@@ -40,6 +40,7 @@
 <script>
 import { computed, reactive, toRefs } from 'vue';
 import PageLayout from '@/layouts/PageLayout.vue';
+import useErrorMessage from '@/composables/useErrorMessage';
 import H1 from '@/components/universal/Typography/H1.vue';
 import P from '@/components/universal/Typography/P.vue';
 import Button from '@/components/universal/Button.vue';
@@ -58,7 +59,7 @@ export default {
   setup() {
     const store = useStore();
     const router = useRouter();
-    const errorMessage = computed(() => store.state.errorMessage);
+    const { errorMessage } = useErrorMessage();
     const state = reactive({
       username: '',
       password: '',
