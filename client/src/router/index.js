@@ -3,6 +3,7 @@ import Home from '../views/Home/Home.vue';
 import Login from '../views/Login/Login.vue';
 import Register from '../views/Register/Register.vue';
 import protectedRoutes from './protectedRoutes';
+import store from '../store';
 
 const routes = [
   {
@@ -26,6 +27,24 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const isProtectedRoute =
+    from.path !== '/home' &&
+    from.path !== '/login' &&
+    from.path !== '/register';
+  const isAuthenticatedAfterLoadingWithNoError =
+    !store.state.isLoading &&
+    store.state.auth.isAuthenticated &&
+    !store.state.auth.errorMessage;
+  if (isProtectedRoute && isAuthenticatedAfterLoadingWithNoError) {
+    next();
+  } else if (!isProtectedRoute) {
+    next();
+  } else {
+    next('/');
+  }
 });
 
 export default router;

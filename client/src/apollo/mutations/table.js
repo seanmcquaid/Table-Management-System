@@ -18,7 +18,7 @@ export const editTableMutation = gql`
 
 export const changeTableAvailabilityMutation = gql`
   mutation changeTableAvailabilityMutation($id: Int!, $isAvailable: Boolean!) {
-    changeTableAvailability(id: $id, $isAvailable: $$isAvailable){
+    changeTableAvailability(id: $id, isAvailable: $isAvailable) {
       tables
     }
   }
