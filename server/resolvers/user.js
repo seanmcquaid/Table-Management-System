@@ -73,7 +73,7 @@ const resolvers = {
         where: { id: userInfo.id },
       });
 
-      return updatedUserInfo.seatingCapacity;
+      return { seatingCapacity: updatedUserInfo.seatingCapacity };
     },
   },
 };
