@@ -4,7 +4,9 @@ export const getTableConfigQuery = gql`
   query {
     getTableConfig {
       seatingCapacity
-      tables
+      tables {
+        name
+      }
     }
   }
 `;
