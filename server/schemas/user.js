@@ -1,5 +1,3 @@
-const { gql } = require('apollo-server-express');
-
 const userTypeDefs = `
   type User {
     id: Int
@@ -7,12 +5,12 @@ const userTypeDefs = `
     seatingCapacity: Int
   }
 
-  type Query {
+  extend type Query {
     getUserInfo: User
     getAllUsers: [User]
   }
 
-  type Mutation {
+  extend type Mutation {
     register(username: String!, password: String!): String
     login(username: String!, password: String!): String
     updateSeatingCapacity(seatingCapacity: Int!): Int

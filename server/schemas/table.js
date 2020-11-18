@@ -1,5 +1,3 @@
-const { gql } = require('apollo-server-express');
-
 const tableTypeDefs = `
   type Table {
     name: String
