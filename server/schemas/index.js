@@ -1,7 +1,6 @@
 const userTypeDefs = require('./user');
 const tableTypeDefs = require('./table');
-const { mergeSchemas } = require('apollo-server-express');
 
-const schemas = mergeSchemas([userTypeDefs, tableTypeDefs]);
+const schemas = userTypeDefs.concat(tableTypeDefs);
 
 module.exports = schemas;

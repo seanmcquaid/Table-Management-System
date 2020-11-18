@@ -1,17 +1,21 @@
-const express = require("express");
-const { ApolloServer } = require("apollo-server-express");
-const cors = require("cors");
-const typeDefs = require("./schemas");
-const resolvers = require("./resolvers");
+const express = require('express');
+const { ApolloServer, makeExecutableSchema } = require('apollo-server-express');
+const cors = require('cors');
+const typeDefs = require('./schemas');
+const resolvers = require('./resolvers');
 const app = express();
 
 app.use(cors());
 
-const server = new ApolloServer({
+const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
+});
+
+const server = new ApolloServer({
+  schema,
   playground: {
-    endpoint: "/graphql",
+    endpoint: '/graphql',
   },
   context: ({ req }) => {
     const token = req?.headers?.authorization ?? null;

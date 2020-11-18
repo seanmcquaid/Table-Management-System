@@ -1,6 +1,6 @@
 const { gql } = require('apollo-server-express');
 
-const tableTypeDefs = gql`
+const tableTypeDefs = `
   type Table {
     name: String
     seats: Int
@@ -15,12 +15,12 @@ const tableTypeDefs = gql`
     username: String
   }
 
-  type Query {
+  extend type Query {
     getTableConfig: TableConfig
     getTable(id: Int!): Table
   }
 
-  type Mutation {
+  extend type Mutation {
     addTable(name: String!, seats: Int!): TableConfig
     editTable(id: Int!, name: String!, seats: Int!): TableConfig
     changeTableAvailability(id: Int!, isAvailable: Boolean!): TableConfig
