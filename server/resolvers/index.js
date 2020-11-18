@@ -2,8 +2,8 @@ const userResolvers = require('./user');
 const tableResolvers = require('./table');
 
 const resolvers = {
-  ...userResolvers,
-  ...tableResolvers,
+  Query: { ...userResolvers.Query, ...tableResolvers.Query },
+  Mutation: { ...userResolvers.Mutation, ...tableResolvers.Mutation },
 };
 
 module.exports = resolvers;
