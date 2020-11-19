@@ -29,11 +29,14 @@ export default {
     const seatingCapacity = computed(
       () => store.state.tableConfig.seatingCapacity
     );
-    const state = reactive({ seatingCapacity });
-    const containsNums = computed(() => state.seatingCapacity.match(/\D+/));
+    console.log(seatingCapacity.value);
+    const state = reactive({ seatCapacity: seatingCapacity });
+    const containsNums = computed(
+      () => `${state.seatCapacity}`.match(/^[0-9]+$/) !== null
+    );
 
     const inputOnChange = event => {
-      state[event.target.name] = event.target.value;
+      state[event.target.name] = Number.parseInt(event.target.value);
     };
 
     const onSubmit = () => {
