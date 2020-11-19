@@ -6,6 +6,9 @@ export const getTableConfigQuery = gql`
       seatingCapacity
       tables {
         name
+        id
+        seats
+        isAvailable
       }
     }
   }
