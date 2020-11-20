@@ -37,6 +37,8 @@ export default {
 
     const inputOnChange = event => {
       state[event.target.name] = Number.parseInt(event.target.value);
+      console.log(`${state.seatCapacity}`.match(/^[0-9]+$/));
+      console.log(state.seatCapacity);
     };
 
     const onSubmit = () => {

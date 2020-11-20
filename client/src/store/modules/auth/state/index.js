@@ -1,6 +1,5 @@
 const authState = {
   isAuthenticated: false,
-  username: null,
   token: null,
 };
 

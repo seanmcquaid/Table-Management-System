@@ -8,6 +8,7 @@ const authActions = {
       .login(username, password)
       .then(({ data }) => {
         const { login } = data;
+        console.log(login), username, password;
         return commit('loginSuccess', { token: login });
       })
       .catch(({ graphQLErrors }) => {
