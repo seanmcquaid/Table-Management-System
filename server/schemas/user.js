@@ -2,7 +2,7 @@ const userTypeDefs = `
   type User {
     id: Int
     username: String
-    seatingCapacity: Float
+    seatingCapacity: Int
   }
 
   extend type Query {
@@ -13,7 +13,7 @@ const userTypeDefs = `
   extend type Mutation {
     register(username: String!, password: String!): String
     login(username: String!, password: String!): String
-    updateSeatingCapacity(seatingCapacity: Float!): Float
+    updateSeatingCapacity(seatingCapacity: Int!): Int
   }
 `;
 
