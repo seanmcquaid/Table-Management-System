@@ -1,12 +1,12 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <span v-if="!containsNums">
+    <span v-if="!containsNums && seatingCapacity.length > 0">
       ONLY use numbers for seating capacity!
     </span>
     <TextInput
       @input="inputOnChange"
       name="seatingCapacity"
-      :value="seatCapacity"
+      :value="seatingCapacity"
       label="Seating Capacity"
       placeholder="Seating capacity here"
       type="text"
@@ -26,19 +26,16 @@ export default {
   components: { TextInput, Button },
   setup() {
     const store = useStore();
-    const seatingCapacity = computed(
+    const initialSeatingCapacity = computed(
       () => store.state.tableConfig.seatingCapacity
     );
-    console.log(seatingCapacity.value);
-    const state = reactive({ seatCapacity: seatingCapacity });
+    const state = reactive({ seatingCapacity: initialSeatingCapacity.value });
     const containsNums = computed(
-      () => `${state.seatCapacity}`.match(/^[0-9]+$/) !== null
+      () => `${state.seatingCapacity}`.match(/^[0-9]+$/) !== null
     );
 
     const inputOnChange = event => {
-      state[event.target.name] = Number.parseInt(event.target.value);
-      console.log(`${state.seatCapacity}`.match(/^[0-9]+$/));
-      console.log(state.seatCapacity);
+      state[event.target.name] = event.target.value;
     };
 
     const onSubmit = () => {
