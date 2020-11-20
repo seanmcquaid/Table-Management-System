@@ -109,20 +109,19 @@ const actions = {
   updateSeatingCapacityAction: ({ commit }, { seatingCapacity }) => {
     commit('startLoading');
 
+    // console.log(Number.parseInt(seatingCapacity));
+
     return userService
-      .updateSeatingCapacity(seatingCapacity)
+      .updateSeatingCapacity(Number(seatingCapacity))
       .then(({ data }) => {
         const { updateSeatingCapacity } = data;
+        console.log(updateSeatingCapacity);
         return commit('updateSeatingCapacitySuccess', {
           ...updateSeatingCapacity,
         });
       })
-      .catch(({ graphQLErrors }) => {
-        return commit('setErrorMessage', {
-          errorMessage:
-            graphQLErrors[0].message ??
-            'There was a problem logging in, please try again!',
-        });
+      .catch(err => {
+        console.log(Object.entries(err));
       })
       .finally(() => {
         return commit('stopLoading');

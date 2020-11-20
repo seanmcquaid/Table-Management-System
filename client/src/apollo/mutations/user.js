@@ -13,9 +13,7 @@ export const registerMutation = gql`
 `;
 
 export const updateSeatingCapacityMutation = gql`
-  mutation updateSeatingCapacityMutation($seatingCapacity: Int!) {
-    updateSeatingCapacity(seatingCapacity: $seatingCapacity) {
-      seatingCapacity
-    }
+  mutation updateSeatingCapacityMutation($seatingCapacity: Float!) {
+    updateSeatingCapacity(seatingCapacity: $seatingCapacity)
   }
 `;

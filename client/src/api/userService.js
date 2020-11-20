@@ -23,8 +23,10 @@ export const register = (username, password) =>
     variables: { username, password },
   });
 
-export const updateSeatingCapacity = seatingCapacity =>
-  apolloClient.mutate({
+export const updateSeatingCapacity = seatingCapacity => {
+  console.log(seatingCapacity);
+  return apolloClient.mutate({
     mutation: updateSeatingCapacityMutation,
     variables: { seatingCapacity },
   });
+};
