@@ -10,7 +10,6 @@ const tableTypeDefs = `
   type TableConfig {
     seatingCapacity: Int
     tables: [Table]
-    username: String
   }
 
   extend type Query {

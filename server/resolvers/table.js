@@ -6,14 +6,15 @@ const resolvers = {
     getTableConfig: async (_, args, { token }) => {
       const userInfo = jwt.decode(token);
 
-      const { username, seatingCapacity } = await User.findOne({
+      const { seatingCapacity } = await User.findOne({
         where: { username: userInfo.username },
       });
 
-      const tables = await Table.findAll({ where: { username } });
+      const tables = await Table.findAll({
+        where: { username: userInfo.username },
+      });
 
       return {
-        username,
         seatingCapacity,
         tables,
       };

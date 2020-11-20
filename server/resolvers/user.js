@@ -9,11 +9,10 @@ const resolvers = {
     getUserInfo: async (_, args, { token }) => {
       const user = {};
       if (token) {
-        console.log(token);
         // decode token and use this to find user info
         const userInfo = jwt.decode(token);
         console.log(userInfo);
-        return await User.findOne({ where: { id: user.id } });
+        return await User.findOne({ where: { id: userInfo.id } });
       }
       throw new Error("Sorry, you're not currently authenticated!");
     },
@@ -56,7 +55,7 @@ const resolvers = {
         throw new Error('You password is incorrect!');
       }
 
-      return jwt.sign({ id: user.id, username: user.password }, JWT_SECRET, {
+      return jwt.sign({ id: user.id, username: user.username }, JWT_SECRET, {
         expiresIn: '1d',
       });
     },
