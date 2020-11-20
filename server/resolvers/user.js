@@ -64,9 +64,18 @@ const resolvers = {
         throw new Error('Invalid token!');
       }
 
+      console.log(seatingCapacity);
+
       const userInfo = jwt.decode(token);
 
-      await User.update({ seatingCapacity }, { where: { id: userInfo.id } });
+      console.log(typeof seatingCapacity);
+
+      console.log(await User.findOne({ where: { id: userInfo.id } }));
+
+      await User.update(
+        { seatingCapacity: parseInt(seatingCapacity) },
+        { where: { id: userInfo.id } }
+      );
 
       const updatedUserInfo = await User.findOne({
         where: { id: userInfo.id },

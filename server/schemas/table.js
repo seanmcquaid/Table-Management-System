@@ -8,7 +8,7 @@ const tableTypeDefs = `
   }
 
   type TableConfig {
-    seatingCapacity: Int
+    seatingCapacity: Float
     tables: [Table]
   }
 

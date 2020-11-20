@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     username: DataTypes.STRING,
     password: DataTypes.STRING,
-    seatingCapacity: DataTypes.INTEGER
+    seatingCapacity: DataTypes.FLOAT
   }, {
     sequelize,
     modelName: 'User',
