@@ -25,21 +25,18 @@ const actions = {
   addTableAction: ({ commit }, { name, seats }) => {
     commit('startLoading');
 
-    console.log(name, seats);
-
     return tableService
       .addTable(name, parseInt(seats))
       .then(({ data }) => {
         const { addTable } = data;
         return commit('addTableSuccess', { ...addTable });
       })
-      .catch(err => {
-        console.log(Object.entries(err));
-        // return commit('setErrorMessage', {
-        //   errorMessage:
-        //     graphQLErrors[0].message ??
-        //     'There was a problem logging in, please try again!',
-        // });
+      .catch(({ graphQLErrors }) => {
+        return commit('setErrorMessage', {
+          errorMessage:
+            graphQLErrors[0].message ??
+            'There was a problem logging in, please try again!',
+        });
       })
       .finally(() => {
         return commit('stopLoading');

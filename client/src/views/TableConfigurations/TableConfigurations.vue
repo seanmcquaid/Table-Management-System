@@ -4,7 +4,7 @@
     <P>{{ errorMessage }}</P>
     <EditSeatingCapacityForm />
     <AddTableForm />
-    <!-- <Tables /> -->
+    <Tables />
   </PageLayout>
 </template>
 
@@ -15,7 +15,7 @@ import P from '@/components/universal/Typography/P.vue';
 import useErrorMessage from '@/composables/useErrorMessage';
 import EditSeatingCapacityForm from './EditSeatingCapacityForm.vue';
 import AddTableForm from './AddTableForm.vue';
-// import Tables from './Tables.vue';
+import Tables from './Tables.vue';
 import { useStore } from 'vuex';
 import { onMounted } from 'vue';
 
@@ -26,7 +26,7 @@ export default {
     P,
     EditSeatingCapacityForm,
     AddTableForm,
-    // Tables,
+    Tables,
   },
   setup() {
     const store = useStore();
