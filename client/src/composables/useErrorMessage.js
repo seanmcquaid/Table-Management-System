@@ -5,6 +5,8 @@ const useComposable = () => {
   const store = useStore();
   const errorMessage = computed(() => store.state.errorMessage);
 
+  console.log(errorMessage.value);
+
   return { errorMessage };
 };
 

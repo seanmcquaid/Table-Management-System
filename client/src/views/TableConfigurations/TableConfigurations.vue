@@ -3,8 +3,8 @@
     <H1>Table Configurations</H1>
     <P>{{ errorMessage }}</P>
     <EditSeatingCapacityForm />
-    <!-- <AddTableForm />
-    <Tables /> -->
+    <AddTableForm />
+    <!-- <Tables /> -->
   </PageLayout>
 </template>
 
@@ -14,7 +14,7 @@ import H1 from '@/components/universal/Typography/H1.vue';
 import P from '@/components/universal/Typography/P.vue';
 import useErrorMessage from '@/composables/useErrorMessage';
 import EditSeatingCapacityForm from './EditSeatingCapacityForm.vue';
-// import AddTableForm from './AddTableForm.vue';
+import AddTableForm from './AddTableForm.vue';
 // import Tables from './Tables.vue';
 import { useStore } from 'vuex';
 import { onMounted } from 'vue';
@@ -25,12 +25,13 @@ export default {
     H1,
     P,
     EditSeatingCapacityForm,
-    // AddTableForm,
+    AddTableForm,
     // Tables,
   },
   setup() {
     const store = useStore();
     const { errorMessage } = useErrorMessage();
+    console.log(store.state);
 
     onMounted(() => {
       store.dispatch('getTableConfigAction');

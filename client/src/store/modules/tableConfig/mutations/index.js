@@ -1,7 +1,9 @@
 const mutations = {
   getTableConfigSuccess: (state, { seatingCapacity, tables }) => {
+    console.log(state.seatingCapacity);
     state.seatingCapacity = seatingCapacity;
     state.tables = tables;
+    console.log(state.seatingCapacity);
   },
   addTableSuccess: (state, { tables }) => {
     state.tables = tables;

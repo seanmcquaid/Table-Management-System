@@ -26,10 +26,7 @@ export default {
   components: { TextInput, Button },
   setup() {
     const store = useStore();
-    const initialSeatingCapacity = computed(
-      () => store.state.tableConfig.seatingCapacity
-    );
-    const state = reactive({ seatingCapacity: initialSeatingCapacity.value });
+    const state = reactive({ seatingCapacity: 0 });
     const containsNums = computed(
       () => `${state.seatingCapacity}`.match(/^[0-9]+$/) !== null
     );
