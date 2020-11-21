@@ -72,13 +72,9 @@ const resolvers = {
 
       await currentUser.save();
 
-      console.log(currentUser);
-
       const updatedUserInfo = await User.findOne({
         where: { id: userInfo.id },
       });
-
-      console.log(updatedUserInfo);
 
       return updatedUserInfo.seatingCapacity;
     },
