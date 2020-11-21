@@ -109,15 +109,13 @@ const actions = {
   updateSeatingCapacityAction: ({ commit }, { seatingCapacity }) => {
     commit('startLoading');
 
-    // console.log(Number.parseInt(seatingCapacity));
-
     return userService
-      .updateSeatingCapacity(Number(seatingCapacity))
+      .updateSeatingCapacity(parseInt(seatingCapacity))
       .then(({ data }) => {
         const { updateSeatingCapacity } = data;
         console.log(updateSeatingCapacity);
         return commit('updateSeatingCapacitySuccess', {
-          ...updateSeatingCapacity,
+          seatingCapacity: updateSeatingCapacity,
         });
       })
       .catch(err => {

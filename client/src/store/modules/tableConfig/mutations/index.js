@@ -16,7 +16,6 @@ const mutations = {
     state.tables = tables;
   },
   updateSeatingCapacitySuccess: (state, { seatingCapacity }) => {
-    console.log(seatingCapacity);
     state.seatingCapacity = seatingCapacity;
   },
 };
