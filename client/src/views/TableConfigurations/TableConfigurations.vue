@@ -31,7 +31,6 @@ export default {
   setup() {
     const store = useStore();
     const { errorMessage } = useErrorMessage();
-    console.log(store.state);
 
     onMounted(() => {
       store.dispatch('getTableConfigAction');
