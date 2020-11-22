@@ -41,7 +41,6 @@ const resolvers = {
       const tables = await Table.findAll({ where: { username } });
 
       return {
-        username,
         seatingCapacity,
         tables,
       };
@@ -64,7 +63,6 @@ const resolvers = {
       const tables = await Table.findAll({ where: { username } });
 
       return {
-        username,
         seatingCapacity,
         tables,
       };
@@ -86,7 +84,6 @@ const resolvers = {
       const tables = await Table.findAll({ where: { username } });
 
       return {
-        username,
         seatingCapacity,
         tables,
       };
@@ -103,7 +100,6 @@ const resolvers = {
       const tables = await Table.findAll({ where: { username } });
 
       return {
-        username,
         seatingCapacity,
         tables,
       };
