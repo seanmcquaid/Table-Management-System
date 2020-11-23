@@ -2,78 +2,28 @@
   <PageLayout>
     <H1>Login</H1>
     <P>{{ errorMessage }}</P>
-    <form @submit.prevent="onSubmit">
-      <TextInput
-        @input="inputOnChange"
-        name="username"
-        :value="username"
-        label="Username"
-        placeholder="Username here"
-        type="text"
-      />
-      <TextInput
-        @input="inputOnChange"
-        name="password"
-        :value="password"
-        label="Password"
-        placeholder="Password here"
-        type="password"
-      />
-      <Button type="submit">Login</Button>
-    </form>
+    <LoginForm />
   </PageLayout>
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
 import useErrorMessage from '@/composables/useErrorMessage';
 import PageLayout from '@/layouts/PageLayout.vue';
 import H1 from '@/components/universal/Typography/H1.vue';
 import P from '@/components/universal/Typography/P.vue';
-import Button from '@/components/universal/Button.vue';
-import TextInput from '@/components/universal/TextInput.vue';
-import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
+import LoginForm from './LoginForm.vue';
 
 export default {
   components: {
     PageLayout,
     H1,
     P,
-    Button,
-    TextInput,
+    LoginForm,
   },
   setup() {
-    const store = useStore();
-    const router = useRouter();
     const { errorMessage } = useErrorMessage();
-    const state = reactive({
-      username: '',
-      password: '',
-    });
-
-    const inputOnChange = event => {
-      state[event.target.name] = event.target.value;
-    };
-
-    const onSubmit = () => {
-      store
-        .dispatch('loginAction', {
-          username: state.username,
-          password: state.password,
-        })
-        .then(() => {
-          if (!errorMessage.value) {
-            router.push('/tableManagement');
-          }
-        })
-        .catch(() => console.log('err'));
-    };
 
     return {
-      ...toRefs(state),
-      onSubmit,
-      inputOnChange,
       errorMessage,
     };
   },
