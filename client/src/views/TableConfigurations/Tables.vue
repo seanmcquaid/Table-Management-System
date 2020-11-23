@@ -21,7 +21,6 @@ export default {
   setup() {
     const store = useStore();
     const tables = computed(() => store.state.tableConfig.tables);
-    console.log(tables.value);
 
     const deleteButtonOnClick = id => {
       store.dispatch('deleteTableAction', { id });
