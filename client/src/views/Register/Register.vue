@@ -9,8 +9,8 @@
 <script>
 import PageLayout from '@/layouts/PageLayout.vue';
 import useErrorMessage from '@/composables/useErrorMessage';
-import H1 from '@/components/universal/Typography/H1.vue';
-import P from '@/components/universal/Typography/P.vue';
+import H1 from '@/components/Typography/H1.vue';
+import P from '@/components/Typography/P.vue';
 import RegisterForm from './RegisterForm.vue';
 
 export default {

@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import Button from '@/components/universal/Button.vue';
-import LinkButton from '@/components/universal/LinkButton.vue';
+import Button from '@/components/Button.vue';
+import LinkButton from '@/components/LinkButton.vue';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 

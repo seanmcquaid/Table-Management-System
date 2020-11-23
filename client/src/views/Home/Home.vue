@@ -14,9 +14,9 @@
 
 <script>
 import PageLayout from '@/layouts/PageLayout.vue';
-import H1 from '@/components/universal/Typography/H1.vue';
-import P from '@/components/universal/Typography/P.vue';
-import LinkButton from '@/components/universal/LinkButton.vue';
+import H1 from '@/components/Typography/H1.vue';
+import P from '@/components/Typography/P.vue';
+import LinkButton from '@/components/LinkButton.vue';
 
 export default {
   components: {

@@ -19,8 +19,8 @@
 
 <script>
 import { computed, reactive, toRefs } from 'vue';
-import TextInput from '../../components/universal/TextInput.vue';
-import Button from '../../components/universal/Button.vue';
+import TextInput from '../../components/TextInput.vue';
+import Button from '../../components/Button.vue';
 import { useStore } from 'vuex';
 export default {
   components: { TextInput, Button },

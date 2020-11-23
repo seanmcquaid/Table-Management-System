@@ -23,8 +23,8 @@
 <script>
 import { reactive, toRefs } from 'vue';
 import useErrorMessage from '@/composables/useErrorMessage';
-import Button from '@/components/universal/Button.vue';
-import TextInput from '@/components/universal/TextInput.vue';
+import Button from '@/components/Button.vue';
+import TextInput from '@/components/TextInput.vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 
