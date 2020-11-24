@@ -25,8 +25,12 @@ export default {
           state.name = name;
           state.seats = seats;
         })
-        .catch(err => {
-          console.log(err);
+        .catch(({ graphQLErrors }) => {
+          store.dispatch('setErrorMessage', {
+            errorMessage:
+              graphQLErrors[0].message ??
+              'There was a problem getting this table info, please try again!',
+          });
         });
     });
 
