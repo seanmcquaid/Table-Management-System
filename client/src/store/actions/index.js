@@ -5,6 +5,9 @@ const actions = {
   stopLoadingAction: ({ commit }) => {
     commit('stopLoading');
   },
+  setErrorMessageAction: ({ commit }, { errorMessage }) => {
+    commit('setErrorMessage', { errorMessage });
+  },
 };
 
 export default actions;
