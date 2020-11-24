@@ -1,5 +1,22 @@
 <template>
-  <form></form>
+  <form @submit.prevent="onSubmit">
+    <TextInput
+      @input="inputOnChange"
+      name="name"
+      :value="name"
+      label="Table Name"
+      placeholder="Table name here"
+      type="text"
+    />
+    <TextInput
+      @input="inputOnChange"
+      name="seats"
+      :value="seats"
+      label="Seats"
+      placeholder="Seats here"
+      type="text"
+    />
+  </form>
 </template>
 
 <script>
@@ -8,8 +25,10 @@ import { onMounted, reactive, toRefs } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import useErrorMessage from '@/composables/useErrorMessage';
+import TextInput from '../../components/TextInput.vue';
 
 export default {
+  components: { TextInput },
   setup() {
     const store = useStore();
     const { errorMessage } = useErrorMessage();
@@ -34,6 +53,10 @@ export default {
         });
     });
 
+    const inputOnChange = event => {
+      state[event.target.name] = event.target.value;
+    };
+
     const onSubmit = () => {
       store
         .dispatch('editTableAction', {
@@ -51,6 +74,7 @@ export default {
     return {
       ...toRefs(state),
       onSubmit,
+      inputOnChange,
     };
   },
 };
