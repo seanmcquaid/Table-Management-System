@@ -38,15 +38,20 @@ export default {
     const router = useRouter();
     const route = useRoute();
     const { id } = route.params;
-    console.log(route.params);
 
     onMounted(() => {
       tableService
-        .getTable(id)
-        .then(({ getTable: { name, seats } }) => {
-          state.name = name;
-          state.seats = seats;
-        })
+        .getTable(parseInt(id))
+        .then(
+          ({
+            data: {
+              getTable: { name, seats },
+            },
+          }) => {
+            state.name = name;
+            state.seats = seats;
+          }
+        )
         .catch(({ graphQLErrors }) => {
           store.dispatch('setErrorMessage', {
             errorMessage:
