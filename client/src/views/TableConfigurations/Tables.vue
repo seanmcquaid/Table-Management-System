@@ -1,7 +1,10 @@
 <template>
   <ul>
     <li v-for="table in tables" :key="table.id">
-      <span>{{ table.name }}</span>
+      <div class="tableInfo">
+        <span>{{ table.name }} </span>
+        <span>Seating Capacity : {{ table.seats }}</span>
+      </div>
       <LinkButton :route="{ name: 'editTable', params: { id: table.id } }">
         Edit
       </LinkButton>
@@ -36,4 +39,22 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+ul {
+  list-style: none;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.tableInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+</style>
