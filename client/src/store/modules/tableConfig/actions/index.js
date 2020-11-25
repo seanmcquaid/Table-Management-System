@@ -46,7 +46,7 @@ const actions = {
     commit('startLoading');
 
     return tableService
-      .editTable(id, name, seats)
+      .editTable(parseInt(id), name, seats)
       .then(({ data }) => {
         const { editTable } = data;
         return commit('editTableSuccess', { ...editTable });
