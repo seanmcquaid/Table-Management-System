@@ -8,6 +8,9 @@
       placeholder="Table name here"
       type="text"
     />
+    <span v-if="!containsNums && seats.length > 0">
+      ONLY use numbers for seats!
+    </span>
     <TextInput
       @input="inputOnChange"
       name="seats"
@@ -16,13 +19,13 @@
       placeholder="Seats here"
       type="text"
     />
-    <Button type="submit">Submit</Button>
+    <Button type="submit" :disabled="!containsNums">Submit</Button>
   </form>
 </template>
 
 <script>
 import * as tableService from '../../api/tableService';
-import { onMounted, reactive, toRefs } from 'vue';
+import { computed, onMounted, reactive, toRefs } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import useErrorMessage from '@/composables/useErrorMessage';
@@ -34,10 +37,14 @@ export default {
   setup() {
     const store = useStore();
     const { errorMessage } = useErrorMessage();
-    const state = reactive({ name: '', seats: 0 });
+    const state = reactive({ name: '', seats: '0' });
     const router = useRouter();
     const route = useRoute();
     const { id } = route.params;
+
+    const containsNums = computed(
+      () => `${state.seats}`.match(/^[0-9]+$/) !== null
+    );
 
     onMounted(() => {
       tableService
@@ -83,6 +90,7 @@ export default {
       ...toRefs(state),
       onSubmit,
       inputOnChange,
+      containsNums,
     };
   },
 };
