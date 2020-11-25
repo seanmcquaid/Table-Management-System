@@ -6,7 +6,7 @@
 export default {
   props: {
     route: {
-      type: String,
+      type: [Object, String],
       required: true,
     },
   },

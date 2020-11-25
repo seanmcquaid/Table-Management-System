@@ -16,6 +16,7 @@
       placeholder="Seats here"
       type="text"
     />
+    <Button type="submit">Submit</Button>
   </form>
 </template>
 
@@ -26,9 +27,10 @@ import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import useErrorMessage from '@/composables/useErrorMessage';
 import TextInput from '../../components/TextInput.vue';
+import Button from '../../components/Button.vue';
 
 export default {
-  components: { TextInput },
+  components: { TextInput, Button },
   setup() {
     const store = useStore();
     const { errorMessage } = useErrorMessage();
@@ -36,6 +38,7 @@ export default {
     const router = useRouter();
     const route = useRoute();
     const { id } = route.params;
+    console.log(route.params);
 
     onMounted(() => {
       tableService

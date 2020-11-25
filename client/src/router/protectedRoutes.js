@@ -7,27 +7,27 @@ import Profile from '../views/Profile/Profile.vue';
 const protectedRoutes = [
   {
     path: '/tableManagement',
-    name: 'TableManagement',
+    name: 'tableManagement',
     component: TableManagement,
   },
   {
     path: '/currentTables',
-    name: 'CurrentTables',
+    name: 'currentTables',
     component: CurrentTables,
   },
   {
     path: '/tableConfigurations',
-    name: 'TableConfigurations',
+    name: 'tableConfigurations',
     component: TableConfigurations,
   },
   {
     path: '/profile',
-    name: 'Profile',
+    name: 'profile',
     component: Profile,
   },
   {
     path: '/editTable/:id',
-    name: 'EditTable',
+    name: 'editTable',
     component: EditTable,
   },
 ];

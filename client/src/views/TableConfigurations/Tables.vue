@@ -2,7 +2,9 @@
   <ul>
     <li v-for="table in tables" :key="table.id">
       <span>{{ table.name }}</span>
-      <LinkButton route="/editTable/{{table.id}}">Edit</LinkButton>
+      <LinkButton :route="{ name: 'editTable', params: { id: table.id } }">
+        Edit
+      </LinkButton>
       <Button type="button" @click="deleteButtonOnClick(table.id)">
         Delete
       </Button>
