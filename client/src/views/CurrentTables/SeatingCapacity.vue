@@ -1,5 +1,6 @@
 <template>
   <P>Seats Left : {{ seatsLeft }}</P>
+  <P v-if="seatsLeft <= 0">NO SEATS LEFT!</P>
 </template>
 
 <script>
@@ -21,8 +22,6 @@ export default {
         if (table.isAvailable) {
           return total + table.seats;
         }
-
-        return total + 0;
       }, 0)
     );
     const seatsLeft = computed(
