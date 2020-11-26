@@ -1,6 +1,5 @@
 <template>
-  <!-- <P>{{ seatingCapacity }}</P> -->
-  <P>Hello</P>
+  <P>Seats Left : {{ seatsLeft }}</P>
 </template>
 
 <script>
@@ -14,29 +13,25 @@ export default {
   },
   setup() {
     const store = useStore();
-    const tables = computed(() => store.state.tableConfig.tables);
-    console.log(tables.value);
-    // const totalSeatsOccupied = computed(() =>
-    //   store.state.tableConfig.tables.reduce((total, table) => {
-    //     console.log(table);
-    //     if (table.isAvailable) {
-    //       return total + table.seats;
+    const tables = computed(() => {
+      return store.state.tableConfig.tables;
+    });
+    const totalSeatsOccupied = computed(() =>
+      tables.value.reduce((total, table) => {
+        if (table.isAvailable) {
+          return total + table.seats;
+        }
 
-    //     }
-    //     return 0;
-    //   })
-    // );
-    // const seatsLeft = computed(
-    //   () => store.state.tableConfig.seatingCapacity - totalSeatsOccupied.value
-    // );
+        return total + 0;
+      }, 0)
+    );
+    const seatsLeft = computed(
+      () => store.state.tableConfig.seatingCapacity - totalSeatsOccupied.value
+    );
 
-    // console.log(totalSeatsOccupied.value);
-
-    // console.log(totalSeatsOccupied.value);
-
-    // return {
-    //   seatsLeft,
-    // };
+    return {
+      seatsLeft,
+    };
   },
 };
 </script>
