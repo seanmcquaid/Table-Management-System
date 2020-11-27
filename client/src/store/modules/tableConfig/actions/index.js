@@ -66,7 +66,7 @@ const actions = {
     commit('startLoading');
 
     return tableService
-      .changeTableAvailability(id, isAvailable)
+      .changeTableAvailability(parseInt(id), isAvailable)
       .then(({ data }) => {
         const { changeTableAvailability } = data;
         return commit('changeTableAvailabilitySuccess', {

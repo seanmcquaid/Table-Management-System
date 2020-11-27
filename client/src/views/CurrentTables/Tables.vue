@@ -5,10 +5,18 @@
         <span>{{ table.name }} </span>
         <span>Seating Capacity : {{ table.seats }}</span>
       </div>
-      <Button type="button" :disabled="!table.isAvailable">
+      <Button
+        type="button"
+        :disabled="!table.isAvailable"
+        @click="availabilityButtonOnClick(true)"
+      >
         Available
       </Button>
-      <Button type="button" :disabled="table.isAvailable">
+      <Button
+        type="button"
+        :disabled="table.isAvailable"
+        @click="availabilityButtonOnClick(false)"
+      >
         Occupied
       </Button>
     </li>
@@ -26,8 +34,15 @@ export default {
     const store = useStore();
     const tables = computed(() => store.state.tableConfig.tables);
 
+    const availabilityButtonOnClick = isAvailable => {
+      store.dispatch('changeTableAvailabilityAction', {
+        isAvailable,
+      });
+    };
+
     return {
       tables,
+      availabilityButtonOnClick,
     };
   },
 };
