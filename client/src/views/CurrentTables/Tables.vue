@@ -6,8 +6,8 @@
         <span>Seating Capacity : {{ table.seats }}</span>
         <span
           >Current status :
-          {{ table.isAvailable ? 'Available' : 'Occupied' }}</span
-        >
+          {{ table.isAvailable ? 'Available' : 'Occupied' }}
+        </span>
       </div>
       <Button
         type="button"
