@@ -4,17 +4,21 @@
       <div class="tableInfo">
         <span>{{ table.name }} </span>
         <span>Seating Capacity : {{ table.seats }}</span>
+        <span
+          >Current status :
+          {{ table.isAvailable ? 'Available' : 'Occupied' }}</span
+        >
       </div>
       <Button
         type="button"
-        :disabled="!table.isAvailable"
+        :disabled="table.isAvailable"
         @click="availabilityButtonOnClick(table.id, true)"
       >
         Available
       </Button>
       <Button
         type="button"
-        :disabled="table.isAvailable"
+        :disabled="!table.isAvailable"
         @click="availabilityButtonOnClick(table.id, false)"
       >
         Occupied
@@ -33,6 +37,8 @@ export default {
   setup() {
     const store = useStore();
     const tables = computed(() => store.state.tableConfig.tables);
+
+    console.log(tables);
 
     const availabilityButtonOnClick = (id, isAvailable) => {
       store.dispatch('changeTableAvailabilityAction', {
