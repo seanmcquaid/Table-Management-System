@@ -8,14 +8,14 @@
       <Button
         type="button"
         :disabled="!table.isAvailable"
-        @click="availabilityButtonOnClick(true)"
+        @click="availabilityButtonOnClick(table.id, true)"
       >
         Available
       </Button>
       <Button
         type="button"
         :disabled="table.isAvailable"
-        @click="availabilityButtonOnClick(false)"
+        @click="availabilityButtonOnClick(table.id, false)"
       >
         Occupied
       </Button>
@@ -34,8 +34,9 @@ export default {
     const store = useStore();
     const tables = computed(() => store.state.tableConfig.tables);
 
-    const availabilityButtonOnClick = isAvailable => {
+    const availabilityButtonOnClick = (id, isAvailable) => {
       store.dispatch('changeTableAvailabilityAction', {
+        id,
         isAvailable,
       });
     };
