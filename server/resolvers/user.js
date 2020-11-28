@@ -78,6 +78,37 @@ const resolvers = {
 
       return updatedUserInfo.seatingCapacity;
     },
+    updatePassword: async (_, { newPassword }, { token }) => {
+      if (!token) {
+        throw new Error('Invalid token!');
+      }
+
+      const userInfo = jwt.decode(token);
+
+      const currentUser = await User.findOne({ where: { id: userInfo.id } });
+
+      const encryptedNewPassword = await bcrypt.hash(newPassword, 10);
+
+      if (await bcrypt.compare(currentUser.password, encryptedNewPassword)) {
+        throw new Error('The newly submitted password is the same as');
+      }
+
+      currentUser.password = encryptedNewPassword;
+
+      await currentUser.save();
+
+      const updatedUserInfo = await User.findOne({
+        where: { id: userInfo.id },
+      });
+
+      return jwt.sign(
+        { id: updatedUserInfo.id, username: updatedUserInfo.username },
+        JWT_SECRET,
+        {
+          expiresIn: '1d',
+        }
+      );
+    },
   },
 };
 

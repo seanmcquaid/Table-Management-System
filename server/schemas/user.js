@@ -14,6 +14,7 @@ const userTypeDefs = `
     register(username: String!, password: String!): String
     login(username: String!, password: String!): String
     updateSeatingCapacity(seatingCapacity: Int!): Int
+    updatePassword(newPassword: String!): String
   }
 `;
 
