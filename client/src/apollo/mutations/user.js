@@ -17,3 +17,9 @@ export const updateSeatingCapacityMutation = gql`
     updateSeatingCapacity(seatingCapacity: $seatingCapacity)
   }
 `;
+
+export const updatePasswordMutation = gql`
+  mutation updatePasswordMutation($newPassword: String!) {
+    updatePassword(newPassword: $newPassword)
+  }
+`;

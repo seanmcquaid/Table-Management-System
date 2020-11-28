@@ -3,6 +3,7 @@ import {
   loginMutation,
   registerMutation,
   updateSeatingCapacityMutation,
+  updatePasswordMutation,
 } from '../apollo/mutations/user';
 import { getUserInfoQuery } from '../apollo/queries/user';
 
@@ -23,10 +24,14 @@ export const register = (username, password) =>
     variables: { username, password },
   });
 
-export const updateSeatingCapacity = seatingCapacity => {
-  console.log(seatingCapacity);
-  return apolloClient.mutate({
+export const updateSeatingCapacity = seatingCapacity =>
+  apolloClient.mutate({
     mutation: updateSeatingCapacityMutation,
     variables: { seatingCapacity },
   });
-};
+
+export const updatePassword = newPassword =>
+  apolloClient.mutate({
+    mutation: updatePasswordMutation,
+    variables: { newPassword },
+  });
