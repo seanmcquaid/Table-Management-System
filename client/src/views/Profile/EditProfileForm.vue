@@ -1,6 +1,8 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <span v-if="newPassword !== confirmPassword">Passwords must match</span>
+    <span v-if="newPassword !== confirmPassword && confirmPassword.length > 0">
+      Passwords must match
+    </span>
     <TextInput
       @input="inputOnChange"
       name="newPassword"
@@ -17,7 +19,7 @@
       placeholder="Confirm new password here"
       type="password"
     />
-    <Button type="submit" disabled="newPassword !== confirmPassword">
+    <Button type="submit" :disabled="newPassword !== confirmPassword">
       Login
     </Button>
   </form>
@@ -26,10 +28,10 @@
 <script>
 import { reactive, toRefs } from 'vue';
 import * as userService from '../../api/userService';
-import useErrorMessage from '@/composables/useErrorMessage';
 import Button from '@/components/Button.vue';
 import TextInput from '@/components/TextInput.vue';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 
 export default {
   components: {
@@ -37,12 +39,12 @@ export default {
     TextInput,
   },
   setup() {
-    // const router = useRouter();
-    // const { errorMessage } = useErrorMessage();
+    const router = useRouter();
+    const store = useStore();
 
     const state = reactive({
       newPassword: '',
-      confirmNewPassword: '',
+      confirmPassword: '',
     });
 
     const inputOnChange = event => {
@@ -52,8 +54,16 @@ export default {
     const onSubmit = () => {
       userService
         .updatePassword(state.newPassword)
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
+        .then(() => {
+          router.push('/tableManagement');
+        })
+        .catch(({ graphQLErrors }) => {
+          store.dispatch('setErrorMessage', {
+            errorMessage:
+              graphQLErrors[0].message ??
+              'There was a problem submitting the new password, please try again!',
+          });
+        });
     };
 
     return {
