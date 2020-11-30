@@ -16,9 +16,12 @@ export default {
 <style scoped>
 .linkButton {
   padding: 1rem;
-  border: 2px solid black;
   margin: 1rem;
-  background-color: black;
+  border-radius: 8px;
+  outline: none;
+  background-color: #100b00;
+  color: white;
+  border: none;
 }
 
 a {

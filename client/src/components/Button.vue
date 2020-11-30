@@ -12,5 +12,6 @@ button {
   background-color: #100b00;
   color: white;
   border: none;
+  font-family: 'Karla', sans-serif;
 }
 </style>
