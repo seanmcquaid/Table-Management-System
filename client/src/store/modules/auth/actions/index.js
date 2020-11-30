@@ -1,6 +1,23 @@
 import * as userService from '../../../../api/userService';
 
 const authActions = {
+  getUserInfoAction: ({ commit }) => {
+    commit('startLoading');
+
+    return userService
+      .getUserInfo()
+      .then(({ data }) => {})
+      .catch(({ graphQLErrors }) => {
+        return commit('setErrorMessage', {
+          errorMessage:
+            graphQLErrors[0].message ??
+            'There was a problem logging in, please try again!',
+        });
+      })
+      .finally(() => {
+        return commit('stopLoading');
+      });
+  },
   loginAction: ({ commit }, { username, password }) => {
     commit('startLoading');
 
@@ -8,7 +25,6 @@ const authActions = {
       .login(username, password)
       .then(({ data }) => {
         const { login } = data;
-        console.log(login), username, password;
         return commit('loginSuccess', { token: login });
       })
       .catch(({ graphQLErrors }) => {

@@ -19,4 +19,14 @@ export default {
   border: 2px solid black;
   margin: 1rem;
 }
+
+a {
+  color: white;
+  text-decoration: none;
+  font-family: 'Karla', sans-serif;
+}
+
+a:hover {
+  text-decoration: underline;
+}
 </style>

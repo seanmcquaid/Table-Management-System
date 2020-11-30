@@ -2,4 +2,8 @@
   <p><slot /></p>
 </template>
 
-<style scoped></style>
+<style scoped>
+p {
+  font-family: 'Karla', sans-serif;
+}
+</style>

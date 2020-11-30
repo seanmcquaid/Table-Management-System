@@ -49,10 +49,13 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Karla', sans-serif;
+  color: black;
 }
 
 nav {
   width: 100%;
+  background-color: #100b00;
 }
 
 ul {
@@ -66,6 +69,16 @@ ul {
 
 li {
   padding: 0.25rem;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  font-family: 'Karla', sans-serif;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 header {
