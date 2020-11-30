@@ -6,7 +6,7 @@ const userTypeDefs = `
   }
 
   extend type Query {
-    getUserInfo: User
+    getUserInfo: String
     getAllUsers: [User]
   }
 

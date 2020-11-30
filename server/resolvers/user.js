@@ -7,12 +7,19 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const resolvers = {
   Query: {
     getUserInfo: async (_, args, { token }) => {
-      const user = {};
       if (token) {
-        // decode token and use this to find user info
-        const userInfo = jwt.decode(token);
-        console.log(userInfo);
-        return await User.findOne({ where: { id: userInfo.id } });
+        const decodedToken = jwt.decode(token);
+
+        const currentUserInfo = await User.findOne({
+          where: { id: decodedToken.id },
+        });
+        return jwt.sign(
+          { id: currentUserInfo.id, username: currentUserInfo.username },
+          JWT_SECRET,
+          {
+            expiresIn: '1d',
+          }
+        );
       }
       throw new Error("Sorry, you're not currently authenticated!");
     },
