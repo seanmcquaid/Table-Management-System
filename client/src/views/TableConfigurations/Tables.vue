@@ -42,6 +42,9 @@ export default {
 <style scoped>
 ul {
   list-style: none;
+  height: 100%;
+  overflow: auto;
+  padding: 0;
 }
 
 li {
@@ -49,6 +52,8 @@ li {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  border: 2px solid black;
+  padding: 1rem;
 }
 
 .tableInfo {

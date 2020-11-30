@@ -2,8 +2,10 @@
   <PageLayout>
     <H1>Table Configurations</H1>
     <P>{{ errorMessage }}</P>
-    <EditSeatingCapacityForm />
-    <AddTableForm />
+    <div class="formsContainer">
+      <EditSeatingCapacityForm />
+      <AddTableForm />
+    </div>
     <Tables />
   </PageLayout>
 </template>
@@ -43,4 +45,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.formsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+</style>
