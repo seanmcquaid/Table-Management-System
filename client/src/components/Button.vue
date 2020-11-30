@@ -2,8 +2,6 @@
   <button><slot /></button>
 </template>
 
-<script></script>
-
 <style scoped>
 button {
   padding: 1rem;
@@ -11,5 +9,8 @@ button {
   margin: 1rem;
   border-radius: 8px;
   outline: none;
+  background-color: #100b00;
+  color: white;
+  border: none;
 }
 </style>

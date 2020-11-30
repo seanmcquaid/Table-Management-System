@@ -3,9 +3,12 @@
     <header>
       <nav>
         <ul v-if="isAuthenticated">
-          <li><router-link>User Home</router-link></li>
-          <li><router-link>Profile</router-link></li>
-          <li><router-link>Tables</router-link></li>
+          <li><router-link to="/tableManagement">Home</router-link></li>
+          <li><router-link to="/profile">Profile</router-link></li>
+          <li>
+            <router-link to="/tableConfigurations">Configs</router-link>
+          </li>
+          <li><router-link to="/currentTables">Tables</router-link></li>
         </ul>
         <ul v-else>
           <li><router-link to="/">Home</router-link></li>
