@@ -18,6 +18,7 @@ export default {
   padding: 1rem;
   border: 2px solid black;
   margin: 1rem;
+  background-color: black;
 }
 
 a {

@@ -32,7 +32,9 @@ export default {
     const isAuthenticated = computed(() => store.state.auth.isAuthenticated);
 
     onMounted(() => {
-      // if there is a token in local storage, dispatch get user info action
+      if (localStorage.getItem('token')) {
+        store.dispatch('getUserInfoAction');
+      }
     });
 
     return {
@@ -96,5 +98,7 @@ footer {
   left: 0;
   text-align: center;
   padding: 1rem 0;
+  background-color: #100b00;
+  color: white;
 }
 </style>

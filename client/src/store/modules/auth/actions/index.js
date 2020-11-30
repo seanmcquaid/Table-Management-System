@@ -6,8 +6,13 @@ const authActions = {
 
     return userService
       .getUserInfo()
-      .then(({ data }) => {})
+      .then(({ data }) => {
+        const { getUserInfo } = data;
+        console.log(getUserInfo);
+        return commit('getUserInfoSuccess', { token: getUserInfo });
+      })
       .catch(({ graphQLErrors }) => {
+        commit('getUserInfoError');
         return commit('setErrorMessage', {
           errorMessage:
             graphQLErrors[0].message ??
