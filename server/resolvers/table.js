@@ -31,6 +31,18 @@ const resolvers = {
         where: { username: userInfo.username },
       });
 
+      const currentTables = await Table.findAll({ where: { username } });
+      const currentTotalTableSeats = currentTables.reduce(
+        (a, b) => a + b.seats,
+        0
+      );
+
+      if (currentTotalTableSeats + seats > seatingCapacity) {
+        throw new Error(
+          "You can't add this table because it goes over your current seating capacity!"
+        );
+      }
+
       await Table.create({
         username,
         name,
