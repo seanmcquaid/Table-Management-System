@@ -19,10 +19,16 @@ export default {
     });
     const totalSeatsOccupied = computed(() =>
       tables.value.reduce((total, table) => {
-        if (table.isAvailable) {
+        if (!table.isAvailable) {
           return total + table.seats;
         }
+        return total + 0;
       }, 0)
+    );
+
+    console.log(
+      store.state.tableConfig.seatingCapacity,
+      totalSeatsOccupied.value
     );
     const seatsLeft = computed(
       () => store.state.tableConfig.seatingCapacity - totalSeatsOccupied.value
