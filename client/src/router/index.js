@@ -3,7 +3,7 @@ import Home from '../views/Home/Home.vue';
 import Login from '../views/Login/Login.vue';
 import Register from '../views/Register/Register.vue';
 import protectedRoutes from './protectedRoutes';
-// import store from '../store';
+import store from '../store';
 
 const routes = [
   {
@@ -29,23 +29,24 @@ const router = createRouter({
   routes,
 });
 
-// need to revisit this later
-// router.beforeEach((to, from, next) => {
-//   const isProtectedRoute =
-//     from.path !== '/home' &&
-//     from.path !== '/login' &&
-//     from.path !== '/register';
-//   const isAuthenticatedAfterLoadingWithNoError =
-//     !store.state.isLoading &&
-//     store.state.auth.isAuthenticated &&
-//     !store.state.auth.errorMessage;
-//   if (isProtectedRoute && isAuthenticatedAfterLoadingWithNoError) {
-//     next();
-//   } else if (!isProtectedRoute) {
-//     next();
-//   } else {
-//     next('/');
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  const isProtectedRoute =
+    from.path !== '/' && from.path !== '/login' && from.path !== '/register';
+  const isAuthenticatedAfterLoadingWithNoError =
+    !store.state.isLoading &&
+    store.state.auth.isAuthenticated &&
+    !store.state.auth.errorMessage;
+
+  if (isProtectedRoute && isAuthenticatedAfterLoadingWithNoError) {
+    next();
+    return;
+  } else if (!isProtectedRoute) {
+    next();
+    return;
+  } else {
+    next('/');
+    return;
+  }
+});
 
 export default router;

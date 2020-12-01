@@ -25,11 +25,6 @@ export default {
         return total + 0;
       }, 0)
     );
-
-    console.log(
-      store.state.tableConfig.seatingCapacity,
-      totalSeatsOccupied.value
-    );
     const seatsLeft = computed(
       () => store.state.tableConfig.seatingCapacity - totalSeatsOccupied.value
     );
