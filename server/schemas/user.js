@@ -7,7 +7,6 @@ const userTypeDefs = `
 
   extend type Query {
     getUserInfo: String
-    getAllUsers: [User]
   }
 
   extend type Mutation {
