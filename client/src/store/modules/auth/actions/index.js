@@ -8,7 +8,6 @@ const authActions = {
       .getUserInfo()
       .then(({ data }) => {
         const { getUserInfo } = data;
-        console.log(getUserInfo);
         return commit('getUserInfoSuccess', { token: getUserInfo });
       })
       .catch(({ graphQLErrors }) => {

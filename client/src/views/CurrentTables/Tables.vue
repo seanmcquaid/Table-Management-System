@@ -38,8 +38,6 @@ export default {
     const store = useStore();
     const tables = computed(() => store.state.tableConfig.tables);
 
-    console.log(tables);
-
     const availabilityButtonOnClick = (id, isAvailable) => {
       store.dispatch('changeTableAvailabilityAction', {
         id,
@@ -65,6 +63,9 @@ li {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  border: 2px solid black;
+  margin: 1rem;
+  padding: 0.5rem;
 }
 
 .tableInfo {

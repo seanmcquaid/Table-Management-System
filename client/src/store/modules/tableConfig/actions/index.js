@@ -113,13 +113,16 @@ const actions = {
       .updateSeatingCapacity(parseInt(seatingCapacity))
       .then(({ data }) => {
         const { updateSeatingCapacity } = data;
-        console.log(updateSeatingCapacity);
         return commit('updateSeatingCapacitySuccess', {
           seatingCapacity: updateSeatingCapacity,
         });
       })
-      .catch(err => {
-        console.log(Object.entries(err));
+      .catch(({ graphQLErrors }) => {
+        return commit('setErrorMessage', {
+          errorMessage:
+            graphQLErrors[0].message ??
+            'There was a problem logging in, please try again!',
+        });
       })
       .finally(() => {
         return commit('stopLoading');
